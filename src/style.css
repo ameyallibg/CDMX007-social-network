@@ -1,0 +1,52 @@
+* {
+    background-color: #2E2E2E;
+
+}
+
+header {
+
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 30px;
+}
+
+.nav-item {
+    padding: 5px 25px;
+
+}
+
+.nav-link {
+    color: white;
+}
+
+a.nav-item {
+    position: relative;
+    bottom: -8px;
+}
+
+.comments {
+    display: block;
+    height: 100px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.comment{
+width: 200px;
+height: 100px;
+color: white;
+text-align: center;
+background-color: slategrey;
+
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+}
