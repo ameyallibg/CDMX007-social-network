@@ -15,6 +15,7 @@ const userNameWall = document.getElementById("userNameWall")
 
 
 
+
     buttonSignIn.addEventListener("click",() => {
         let signInValue = signIn.value;
         let passwordValue = password.value;
@@ -43,7 +44,9 @@ const userNameWall = document.getElementById("userNameWall")
 
         let signInValue = signInRegister.value;
         let passwordValue = passwordRegister.value;
-        firebase.auth().signInWithEmailAndPassword(signInValue, passwordValue).catch(function(error) {
+        firebase.auth().signInWithEmailAndPassword(signInValue, passwordValue) 
+        .catch(function(error) 
+        {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -57,76 +60,6 @@ const userNameWall = document.getElementById("userNameWall")
 
 
     })
-const state = () => {
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-      showUser(user)
-      console.log("existe usuario activo");
-    //
-
-    // User is signed in.
-    var displayName = user.displayName;
-    console.log(displayName)
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    console.log(user.emailVerified);
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
-
-
-
-    // ...
-  } else {
-    // User is signed out.
-    // ...
-
-    show.innerHTML= ` <div class="alert alert-warning" role="alert">
-    <p>Sesion no iniciada</p>
-  </div>`;
-
-  }
-});
-}
-
-state();
-
-const showUser = (user) => {
-    var user = user;
-    if (user.emailVerified) {
-        //window.location.replace = "wall.html"
-        show.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
-        // localStorage.setItem('botonCerrar',buttonClose)
-        //     window.location.href = "wall.html"
-
-        //     userNameWall.innerHTML = "Hola " + localStorage.getItem('botonCerrar')
-
-    }else{
-        console.log("no verificado");
-
-
-    }
-
-
-}
-
-const signOutUserRegister = () => {
-        firebase.auth().signOut()
-        .then(function(){
-            //window.location.replace("wall.html")
-            console.log("saliendo...");
-
-
-        })
-        .catch(function(error){
-            console.log(error);
-
-
-        })
-
-
-}
 
 const verification = () => {
     var user = firebase.auth().currentUser;
