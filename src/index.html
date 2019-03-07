@@ -1,64 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
-
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDYw8A17rtchUb_1PmxRdpYVWC1SgNvsm4",
-        authDomain: "devtinder-faf61.firebaseapp.com",
-        databaseURL: "https://devtinder-faf61.firebaseio.com",
-        projectId: "devtinder-faf61",
-        storageBucket: "devtinder-faf61.appspot.com",
-        messagingSenderId: "275029217050"
-      };
-      firebase.initializeApp(config);
-    </script>
-</head>
-<body>
-        <nav class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand">Navbar</a>
-                <div class="form-inline">
-                        <input id="sign-in-reg" class="form-control mr-sm-2" type="email" name="" id="sign-in-reg" placeholder="Ingresa email">
-                        <input id="password-reg" class="form-control mr-sm-2" type="password" name="" id="password-reg" placeholder="contraseña">
-                  <button class="btn btn-success my-2 my-sm-0" id="button-sign-in-reg">Acceder</button>
-                  <button class="btn btn-danger my-2 my-sm-0 ml-2 " data-toggle="modal" data-target="#exampleModal" >Registrar</button>
-                </div>
-                
-              </nav>
+     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  </head>
+  <body>
+         <section class="login">
+                 <div class="form-group">
+                         <div class="form-group">
+                                 <label class="form-group " for="exampleInputEmail1">Email address</label>
+                                 <input id="sign-in-reg" class="form-control mr-sm-2" type="email"  placeholder="Ingresa email">
+                                <small id="emailHelp" class="form-text text-muted">Nunca compartas tu contraseña con nadie mas</small>
+                               </div>
+                               <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input id="password-reg" class="form-control mr-sm-2" type="password"  placeholder="contraseña">
+                                 </div>
+                               <button class="btn btn-success my-2 my-sm-0" id="button-sign-in-reg">Acceder</button>
+                               <button class="btn btn-danger my-2 my-sm-0 ml-2 " data-toggle="modal" data-target="#exampleModal" >Registrar</button>
+                              </div>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                                <input class="form-control mr-sm-2" type="email" name="" id="sign-in-new" placeholder="Ingresa email">
-                                <input class="form-control mr-sm-2" type="password" name="" id="password-new" placeholder="contraseña">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                          <button type="button" id="button-sign-in-new"  class="btn btn-primary">Guardar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-    <section id="show">
-        
-    </section>
-</body>
-<script src="email-password.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                             </section>
+
+               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                       <div class="modal-content">
+                         <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                           </button>
+                         </div>
+                         <div class="modal-body">
+                                 <input class="form-control mr-sm-2" type="text" placeholder="nombre" id="name">
+                                 <input class="form-control mr-sm-2" type="email" name="" id="sign-in-new" placeholder="Ingresa email">
+                                 <input class="form-control mr-sm-2" type="password" name="" id="password-new" placeholder="contraseña">
+                                 <p id="modal-invalid-email"></p>
+                          </div>
+                         <div  class="modal-footer">
+                             <p id="modal-warning"></p>
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                           <button type="button" id="button-sign-in-new"  class="btn btn-primary">Guardar</button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+     <section id="show">
+
+   </section>
+
+  </body>
+  <script src="firebase.js"></script>
+  <script src="index.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>
