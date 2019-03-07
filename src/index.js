@@ -12,11 +12,8 @@ const nameUser = document.getElementById("name")
 const userNameWall = document.getElementById("userNameWall")
 
 
-
-
-
-
     buttonSignIn.addEventListener("click",() => {
+        
         let signInValue = signIn.value;
         let passwordValue = password.value;
         console.log(signInValue);

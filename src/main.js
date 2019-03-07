@@ -9,6 +9,7 @@ const state = () => {
       //
   
       // User is signed in.
+
       var displayName = user.displayName;
       console.log(displayName)
       var email = user.email;
@@ -48,10 +49,11 @@ const showUser = (user) => {
         }
         let loc = window.location.href;
         if (loc.includes("wall")) {
-            let showme = document.getElementById("showme")
-            showme.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
-
-            
+            let showme = document.getElementById("showme");
+            let emailUser = document.getElementById("emailUser");
+            let email = user.email;
+            showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none;">Cerrar sesion</button>`;  
+            emailUser.innerHTML = `<p>${email} </p>`
         }
         
         
