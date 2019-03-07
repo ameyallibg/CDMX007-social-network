@@ -25,20 +25,22 @@ a.nav-item {
 
 .comments {
     display: block;
-    height: 100px;
+    height: auto;
     color: white;
     text-align: center;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+   
 }
 .comment{
-width: 200px;
-height: 100px;
+width: 290px;
+height: 125px;
 color: white;
 text-align: center;
-background-color: slategrey;
+background-color: rgb(88, 88, 88);
+flex-direction: column;
+
 
 }
 
@@ -50,3 +52,4 @@ footer {
     text-align: center;
     padding: 15px;
 }
+
