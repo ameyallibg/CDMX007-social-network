@@ -49,15 +49,19 @@ const showUser = (user) => {
 
           
       }else{
-
+        
       }
       let loc = window.location.href;
       if (loc.includes("wall")) {
           let showme = document.getElementById("showme");
           let emailUser = document.getElementById("emailUser");
+          let nameUser = document.getElementById("name-user");
+          let avatarUser = document.getElementById("avatar-user");
           let email = user.email;
           showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none;">Cerrar sesion</button>`;  
-          emailUser.innerHTML = `<p>${email} </p>`
+          nameUser.innerHTML = `<p> ${user.displayName} </p>`
+          emailUser.innerHTML = `<p>${email}</p>`
+          avatarUser.innerHTML= `<img class="avatar" src="${user.photoURL}">`
       }
       
       

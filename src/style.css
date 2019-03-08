@@ -90,3 +90,9 @@ header h1{
     text-align: center;
     padding: 15px;
  }
+
+ .avatar{
+   width:45px; 
+   height:45px;
+   border-radius: 50%;
+ }
