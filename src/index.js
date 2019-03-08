@@ -106,7 +106,7 @@ buttonSignInFacebook.addEventListener("click", () =>{
 
   
 
-// cierra funcionalidad de login 
+
 
 
 
