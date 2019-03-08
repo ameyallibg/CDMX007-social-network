@@ -1,0 +1,92 @@
+.login{
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 33.33%;
+    color:white;
+}
+.headerIndex{
+    padding-top: 4%;
+    padding-left: 5%;
+    color: #7fff00;
+}
+header h1{
+    margin:0px;
+
+}
+* {
+    background-color: #2E2E2E;
+ 
+ }
+ 
+ header {
+ 
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+ 
+ }
+ 
+ .nav-item {
+    padding: 5px 25px;
+    font-size: 22px;
+ }
+ 
+ #areaPost {
+    width: 250px;
+    height: 100px;
+    color: white;
+    text-align: left;
+    background-color: rgb(88, 88, 88);
+    position: relative;
+    left: 26px;
+    padding: 5px;
+ }
+ 
+ .nav-link {
+    color: white;
+    font-size: 18px;
+ }
+ 
+ #blockbar {
+    padding: 5px;
+ 
+ }
+ 
+ a.nav-item {
+    position: relative;
+    bottom: -8px;
+    color: white;
+ }
+ 
+ #infoUser {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+ }
+ 
+ .comments {
+    height: auto;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+ 
+ }
+ 
+ .comment {
+    width: 290px;
+    height: 125px;
+    color: white;
+    text-align: left;
+ 
+ 
+ 
+ }
+ 
+ footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+ }
