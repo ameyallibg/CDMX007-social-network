@@ -1,38 +1,43 @@
 const state = () => {
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-      showUser(user)
-      
-     
-      console.log("existe usuario activo");
-      //window.location.href= "wall.html"
-    //
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        showUser(user)
+        
+       
+        console.log("existe usuario activo");
+        //window.location.href= "wall.html"
+      //
+  
+      // User is signed in.
 
-    // User is signed in.
-    var displayName = user.displayName;
-    console.log(displayName)
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    console.log(user.emailVerified);
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
+      var displayName = user.displayName;
+      console.log(displayName)
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      console.log(user.emailVerified);
+      var photoURL = user.photoURL;
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      var providerData = user.providerData;
+  
+  
+  
+      // ...
+    } else {
+      // User is signed out.
+      // ...
+  
 
-
-
-    // ...
-  } else {
-    // User is signed out.
-    // ...
-
-
-
+  
+    }
+  });
   }
-});
-}
+  
+  state();
 
-state();
+  
+
+
 
 
 
@@ -48,10 +53,11 @@ const showUser = (user) => {
       }
       let loc = window.location.href;
       if (loc.includes("wall")) {
-          let showme = document.getElementById("showme")
-          showme.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
-
-          
+          let showme = document.getElementById("showme");
+          let emailUser = document.getElementById("emailUser");
+          let email = user.email;
+          showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none;">Cerrar sesion</button>`;  
+          emailUser.innerHTML = `<p>${email} </p>`
       }
       
       
@@ -62,7 +68,6 @@ const showUser = (user) => {
       // if (loc.includes("wall")) {
       //     let showme = document.getElementById("showme")
       //     showme.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
-
           
       // }
       

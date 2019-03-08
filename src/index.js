@@ -1,7 +1,7 @@
 const signIn = document.getElementById("sign-in-new");
 const password = document.getElementById("password-new");
 const buttonSignIn = document.getElementById("button-sign-in-new");
-
+const signinGoogle = document.getElementById("button-sign-in-google");
 const buttonSignInFacebook = document.getElementById("button-sign-in-facebook");
 const signInRegister = document.getElementById("sign-in-reg");
 const passwordRegister = document.getElementById("password-reg");
@@ -13,11 +13,8 @@ const nameUser = document.getElementById("name")
 const userNameWall = document.getElementById("userNameWall")
 
 
-
-
-
-
     buttonSignIn.addEventListener("click",() => {
+        
         let signInValue = signIn.value;
         let passwordValue = password.value;
         console.log(signInValue);
@@ -107,4 +104,10 @@ buttonSignInFacebook.addEventListener("click", () =>{
   });
 })
 
-firebase.auth().signInWithRedirect(provider);
+signinGoogle.addEventListener("click", () => {
+  
+  const baseProvider = new firebase.auth.GoogleAuthProvider()
+  firebase.auth().signInWithRedirect(baseProvider)
+  .catch (e => console.log(e.message));
+ 
+})
