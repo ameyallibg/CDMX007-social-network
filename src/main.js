@@ -35,66 +35,73 @@ const state = () => {
   
   state();
 
+  
+
+
+
 
 
 const showUser = (user) => {
-    var user = user;
-    if (user.emailVerified) {
-        if (!location.href.match(/wall.html$/gm)) {
-            location.replace("wall.html")
+  var user = user;
+  if (user.emailVerified) {
+      if (!location.href.match(/wall.html$/gm)) {
+          location.replace("wall.html")
 
-            
-        }else{
-
-        }
-        let loc = window.location.href;
-        if (loc.includes("wall")) {
-            let showme = document.getElementById("showme");
-            let emailUser = document.getElementById("emailUser");
-            let email = user.email;
-            showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none;">Cerrar sesion</button>`;  
-            emailUser.innerHTML = `<p>${email} </p>`
-        }
+          
+      }else{
         
-        
-        console.log("e mail veirficado")
-        // window.location.href="wall.html"
-        // let loc = window.location.href;
-        // console.log(loc)
-        // if (loc.includes("wall")) {
-        //     let showme = document.getElementById("showme")
-        //     showme.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
+      }
+      let loc = window.location.href;
+      if (loc.includes("wall")) {
+          let showme = document.getElementById("showme");
+          let emailUser = document.getElementById("emailUser");
+          let nameUser = document.getElementById("name-user");
+          let avatarUser = document.getElementById("avatar-user");
+          let email = user.email;
+          showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none;">Cerrar sesion</button>`;  
+          nameUser.innerHTML = `<p> ${user.displayName} </p>`
+          emailUser.innerHTML = `<p>${email}</p>`
+          avatarUser.innerHTML= `<img class="avatar" src="${user.photoURL}">`
+      }
+      
+      
+      console.log("e mail veirficado")
+      // window.location.href="wall.html"
+      // let loc = window.location.href;
+      // console.log(loc)
+      // if (loc.includes("wall")) {
+      //     let showme = document.getElementById("showme")
+      //     showme.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
+          
+      // }
+      
+      
+      // localStorage.setItem('botonCerrar',buttonClose)
+      //     window.location.href = "wall.html"
 
-            
-        // }
-        
-        
-        // localStorage.setItem('botonCerrar',buttonClose)
-        //     window.location.href = "wall.html"
+      //     userNameWall.innerHTML = "Hola " + localStorage.getItem('botonCerrar')
 
-        //     userNameWall.innerHTML = "Hola " + localStorage.getItem('botonCerrar')
-
-    }else{
-        // alert("email no verificado")
+  }else{
+      // alert("email no verificado")
 
 
-    }
+  }
 
 
 }
 const signOutUserRegister = () => {
-    firebase.auth().signOut()
-    .then(function(){
-        window.location.replace("index.html")
-        console.log("saliendo...");
+  firebase.auth().signOut()
+  .then(function(){
+      window.location.replace("index.html")
+      console.log("saliendo...");
 
 
-    })
-    .catch(function(error){
-        console.log(error);
+  })
+  .catch(function(error){
+      console.log(error);
 
 
-    })
+  })
 
 
 }
