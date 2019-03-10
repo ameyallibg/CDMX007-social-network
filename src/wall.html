@@ -49,9 +49,23 @@
                     <a class="nav-item" href="#">Geek It</a>
                 </li>
             </ul>
-            <a class="nav-item" href="#">
-                <img src="assets/edit.png" width="35px" height="35px">
-            </a>
+            <button class="open-button" onclick="openForm()"><img src="assets/edit.png" width="30px" height="30px"></button>
+            <div class="chat-popup" id="myForm">
+                <form action="/action_page.php" class="form-container">
+                    <h3>Geek it</h3>
+                    <textarea placeholder="Escribe tu mensaje..." name="msg" required></textarea>
+                    <button type="submit" class="btn">Publicar</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+                </form>
+            </div>
+            <script>
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                }
+                function closeForm() {
+                    document.getElementById("myForm").style.display = "none";
+                }
+            </script>
         </nav>
     </header>
     <div class="comments">
