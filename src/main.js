@@ -14,7 +14,7 @@ const state = () => {
       console.log(displayName)
       var email = user.email;
       var emailVerified = user.emailVerified;
-     //console.log(user.emailVerified);
+     console.log(user.emailVerified);
       var photoURL = user.photoURL;
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
