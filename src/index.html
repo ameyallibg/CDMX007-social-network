@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
   </head>
@@ -65,33 +66,28 @@
                            </button>
                          </div>
                          <div class="modal-body">
-                                 <input class="input-type margin-input mr-sm-2" type="text" placeholder="Nombre" id="name">
-                                 <input class="input-type margin-input mr-sm-2" type="email" name="" id="sign-in-new" placeholder="Ingresa email">
-                                 <input class="input-type margin-input mr-sm-2" type="password" name="" id="password-new" placeholder="Contraseña">
-                                 <input class="margin-input radio-margin" type="radio" name="transporte2" value="1">Mujer
-                                 <input class= "margin-input radio-margin" type="radio" name="transporte2" value="2" checked>Hombre<br>
+                           <form name="add-form">
+                                 <input class="input-type margin-input mr-sm-2" type="text" name="name" placeholder="Nombre" id="name">
+                                 <input class="input-type margin-input mr-sm-2" type="email" name="email" id="sign-in-new" placeholder="Ingresa email">
+                                 <input class="input-type margin-input mr-sm-2" type="password" name="password" id="password-new" placeholder="Contraseña">
+                                 <input class="margin-input radio-margin" type="radio" name="mujer" value="Mujer">Mujer
+                                <input class= "margin-input radio-margin" type="radio" name="hombre" value="Hombre">Hombre<br>
                                  <select class="margin-input select-class" name="Selecciona Bootcamp">
-                                   
+                              
 
                                     <option>Selecciona Bootcamp</option>
                                     
-                                    <option>Avión</option>
-                                    
-                                    <option>Tren</option>
-                                    <option>Coche</option>
-                                    
-                                    <option>Avión</option>
-                                    
-                                    <option>Tren</option>
-                                    <option>Coche</option>
-                                    
-                                    <option>Avión</option>
-                                    
-                                    <option>Tren</option>
-                                    
+                                    <option value= "Bedu" name="bedu">Bedu</option>
+                                    <option value= "Iron Hack" name="iron">Iron Hack</option>
+                                    <option value= "Hub Camps" name="hub">Hub Camps</option>
+                                    <option value= "Muktek" name="muktek">Muktek</option>                                    
+                                    <option value= "Le wong" name="wong">Le Wong</option>
+                                    <option value= "Laboratoria" name="laboratoria">Laboratoria</option>                                   
+                                    <option value= "Tec de Monterrey" name="tec">Tec de Monterrey</option>                                                                   
                                     </select>
                                     
                                  <p id="modal-invalid-email"></p>
+                                </form>  
                           </div>
                          <div  class="modal-footer">
                              <p id="modal-warning"></p>
@@ -107,6 +103,7 @@
   <script src="firebase.js"></script>
   <script src="index.js"></script>
   <script src="main.js"></script>
+  <script src="database.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
