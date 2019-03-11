@@ -76,6 +76,7 @@ header h1{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
+    background-color: #2e2e2e;
  
  }
  
@@ -84,6 +85,7 @@ header h1{
     height: 125px;
     color: white;
     text-align: left;
+    background-color: #2e2e2e;
  
  
  

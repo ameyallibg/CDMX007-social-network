@@ -60,7 +60,7 @@ const showUser = (user) => {
           let nameUser = document.getElementById("name-user");
           let avatarUser = document.getElementById("avatar-user");
           let email = user.email;
-          showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none;">Cerrar sesion</button>`;  
+          showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none; background-color: #2e2e2e;">Cerrar sesion</button>`;  
           nameUser.innerHTML = `<p> ${user.displayName} </p>`
           emailUser.innerHTML = `<p>${email}</p>`
           avatarUser.innerHTML= `<img class="avatar" src="${user.photoURL}">`
