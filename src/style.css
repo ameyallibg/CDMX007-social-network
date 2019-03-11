@@ -1,9 +1,18 @@
+
+html,body{
+    background-color: #2E2E2E;
+    color: white;
+ 
+ }
 .login{
     width: 100%;
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-top: 33.33%;
-    color:white;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 20%;
+    color: white;
+}
+input::placeholder { 
+    color: white; 
 }
 .headerIndex{
     padding-top: 4%;
@@ -12,12 +21,10 @@
 }
 header h1{
     margin:0px;
+    font-size:9vw;
 
 }
-* {
-    background-color: #2E2E2E;
- 
- }
+
  
  header {
  
@@ -135,6 +142,74 @@ h3 {
 .open-button:hover {
     opacity: 1;
 }
+.color-green{
+    color:#7fff00;
+}
+.input-type{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: white;
+    width: 100%;
+    background-color: #2e2e2e;
+
+}
+#password-reg{
+    padding-top: 2em;
+}
+input:focus{
+    outline: none;
+}
+.button-reg{
+    background-color: #2e2e2e;
+    border:none;
+    color:#81d1d9;
+    margin-left:76%;
+
+}
+.button-reg:focus{
+    outline:none
+}
+.button-nav{
+    color: white;
+    width: 100%;
+    height: 3em;
+    border-radius: 2px;
+    border:none;
+}
+.color-login{
+    background-color: #47525e;
+    margin-top: 1em;
+}
+.color-twitter{
+    background-color: #8492a6;
+    margin-top: 1.5em;
+
+}
+.color-facebook{
+    background-color: #3c4858;
+    margin-top:.5em;
+    
+}
+.color-google{
+    background-color: #c0ccda;
+    margin-top: 1.5em;
+}
+
+hr{
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid;
+}
+#titulo{
+    color:chartreuse;
+}
+p{
+    padding-top:1em;
+    margin: 0px;
+}
 
  footer {
     position: fixed;
@@ -145,8 +220,39 @@ h3 {
     padding: 15px;
  }
 
+ .modal-background{
+    background-color: #2e2e2e;
+    margin-top: 6em;
+
+ }
+ .margin-input{
+    margin-bottom:2em;
+
+ }
+
+ button:hover{
+     opacity: .8;
+ }
+ .select-class{
+    border-radius: 4px;
+    /* background-color: chartreuse; */
+    width: 60%;
+    padding-left: 2%;
+ }
+ .radio-margin{
+    margin-left: 20%;
+ }
+ .alert{
+    border-radius: 4px;
+    padding-left: 3%;
+    margin-top: 1em;
+    margin-bottom: 0px;
+ }
+ .margin-warning{
+    padding:0px;
+
+
  .avatar{
    width:45px; 
    height:45px;
    border-radius: 50%;
- }

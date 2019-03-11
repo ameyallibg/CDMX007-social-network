@@ -41,11 +41,13 @@ const state = () => {
 
 
 
+
 const showUser = (user) => {
   var user = user;
   if (user.emailVerified) {
       if (!location.href.match(/wall.html$/gm)) {
           location.replace("wall.html")
+
 
           
       }else{

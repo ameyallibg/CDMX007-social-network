@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Geek It</title>
-    
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
@@ -16,50 +16,92 @@
   <body>
     <header class="headerIndex"><h1>Geek It</h1></header>
          <nav class="login">
-                 <div class="form-group">
-                         <div class="form-group">
-                                 <label class="form-group " for="exampleInputEmail1">Email address</label>
-                                 <input id="sign-in-reg" class="form-control mr-sm-2" type="email"  placeholder="Ingresa email">
+                 <div class="">
+                         <div class="">   
+                                 <input id="sign-in-reg" class="input-type mr-sm-2" type="email"  placeholder="Email">
                                 <small id="emailHelp" class="form-text text-muted">Nunca compartas tu contraseña con nadie mas</small>
                                </div>
                                <div class="form-group">
-                                 <label for="exampleInputPassword1">Password</label>
-                                 <input id="password-reg" class="form-control mr-sm-2" type="password"  placeholder="contraseña">
+
+                                 <input id="password-reg" class="input-type mr-sm-2" type="password"  placeholder="Contraseña">
+                                 <section id="show">
+
+                                  </section>
                                  </div>
-                               <button class="btn btn-success my-2 my-sm-0" id="button-sign-in-reg">Acceder</button>
-                               <button class="btn btn-danger my-2 my-sm-0 ml-2 " data-toggle="modal" data-target="#exampleModal" >Registrar</button>
-                               <br><button class="btn btn-success my-2 my-sm-0" id="button-sign-in-facebook">Facebook</button>
-                               <br><button class="btn btn-success my-2 my-sm-0" id="button-sign-in-google">Google</button>
-                              </div>
+
+                               <button class="button-nav color-login" id="button-sign-in-reg">Iniciar Sesion</button>
+                               <button class="button-reg" data-toggle="modal" data-target="#exampleModal"> <u>registrarse</u></button>
+                                 
+
+                                  <div class="row" >
+
+                                    <div class="col-5" >
+                                      <hr>
+                                    </div>
+
+                                    <div class="col-2" id="titulo">
+                                      <p> O</p>
+                                    </div>
+
+                                    <div class="col-5" >
+                                      <hr>
+                                    </div>
+
+                                  </div>
+                                  <button class="button-nav color-facebook" id="button-sign-in-facebook">Iniciar con Facebook</button>
+                                  <button class="button-nav color-twitter" id="button-sign-in-reg">Iniciar con Twitter</button>
+                                  <button class="button-nav color-google" id="button-sign-in-google">Iniciar con Google</button>                         
+                              
 
                             </nav>
 
                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog" role="document">
-                       <div class="modal-content">
+                       <div class="modal-content modal-background">
                          <div class="modal-header">
-                           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                           <h5 class="modal-title color-green" id="exampleModalLabel">Registrar una nueva cuenta</h5>
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                              <span aria-hidden="true">&times;</span>
                            </button>
                          </div>
                          <div class="modal-body">
-                                 <input class="form-control mr-sm-2" type="text" placeholder="nombre" id="name">
-                                 <input class="form-control mr-sm-2" type="email" name="" id="sign-in-new" placeholder="Ingresa email">
-                                 <input class="form-control mr-sm-2" type="password" name="" id="password-new" placeholder="contraseña">
+                                 <input class="input-type margin-input mr-sm-2" type="text" placeholder="Nombre" id="name">
+                                 <input class="input-type margin-input mr-sm-2" type="email" name="" id="sign-in-new" placeholder="Ingresa email">
+                                 <input class="input-type margin-input mr-sm-2" type="password" name="" id="password-new" placeholder="Contraseña">
+                                 <input class="margin-input radio-margin" type="radio" name="transporte2" value="1">Mujer
+                                 <input class= "margin-input radio-margin" type="radio" name="transporte2" value="2" checked>Hombre<br>
+                                 <select class="margin-input select-class" name="Selecciona Bootcamp">
+                                   
+
+                                    <option>Selecciona Bootcamp</option>
+                                    
+                                    <option>Avión</option>
+                                    
+                                    <option>Tren</option>
+                                    <option>Coche</option>
+                                    
+                                    <option>Avión</option>
+                                    
+                                    <option>Tren</option>
+                                    <option>Coche</option>
+                                    
+                                    <option>Avión</option>
+                                    
+                                    <option>Tren</option>
+                                    
+                                    </select>
+                                    
                                  <p id="modal-invalid-email"></p>
                           </div>
                          <div  class="modal-footer">
                              <p id="modal-warning"></p>
                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                           <button type="button" id="button-sign-in-new"  class="btn btn-primary">Guardar</button>
+                           <button type="button" id="button-sign-in-new"  class="btn btn-primary">Registrar</button>
                          </div>
                        </div>
                      </div>
                    </div>
-     <section id="show">
-
-   </section>
+     
 
   </body>
   <script src="firebase.js"></script>
