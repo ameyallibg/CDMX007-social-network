@@ -75,8 +75,7 @@ const showUser = (user) => {
         //     userNameWall.innerHTML = "Hola " + localStorage.getItem('botonCerrar')
 
     }else{
-        // alert("email no verificado")
-
+        
 
     }
 

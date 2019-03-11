@@ -45,12 +45,21 @@ const userNameWall = document.getElementById("userNameWall")
         .catch(function(error) 
         {
             // Handle Errors here.
-            var errorCode = error.code;
+            var errorCode = error.code
             var errorMessage = error.message;
+            if (errorMessage == 'The email address is badly formatted.') {
+              show.innerHTML= ` <div class=" alert-warning alert" role="alert">
+              <p class="margin-warning">La direccion del correo no es valida</p>
+            </div>`;
+              
+            }else {
+              show.innerHTML= ` <div class=" alert-warning alert" role="alert">
+              <p class="margin-warning">${errorCode}</p>
+            </div>`;
 
-            show.innerHTML= ` <div class="alert alert-warning" role="alert">
-            <p>${errorCode} o ${errorMessage}</p>
-          </div>`;
+            }
+
+            
             // ...
           });
 
