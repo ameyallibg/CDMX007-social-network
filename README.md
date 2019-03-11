@@ -1,29 +1,33 @@
 # Creando una Red Social
+Red social para estudiantes de bootcamps en la Ciudad de México:
 
-## Preámbulo
+Bedu
+Muktek
+Ironhack 
+le wagong
+Tec de monterrey
+Laboratoria
+Hubcamp
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos y/u odiamos, y muchos no podemos vivir sin ellas.
 
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
+Puntos esenciales de red social:
+Interacción, comunicación en tiempo real.
+
+
+Verticales, eje temático (programadoras, programadoras integrantes de Bootcamps)
+Relación- gustos intereses / de contenido- documentos, eventos incluso chambas.
+
+
+
+Iniciar Sesión
+Perfil información básica del usuario
+Feed/muro/home
 
 ## Introducción
 
-Una emprendedora nos ha encargado crear una red social. No nos da mucho detalle
-sobre qué tipo de red social quiere, sólo nos dice que creemos la mejor que
-podamos, y que luego la convenzamos de lanzarla al mercado. Nos da ciertos temas
-en los que le gustaría invertir:
+Una emprendedora nos ha encargado crear una red social.
 
-* Alimentación
-* Feminismo
-* Educación
-* Salud
-* Energías Renovables
+* Educación Digital
 
 ## Objetivos de Aprendizaje
 
@@ -59,52 +63,64 @@ repositorio.
 
 ### General
 
-En este proyecto, tú junto a tus compañeras de equipo deberán definir los
-_tests_ que consideren necesarios; puedes guiarte de los proyectos
-anteriores. Igualmente el proyecto cuenta con una estructura de carpetas
-y archivos ya definida pero pueden modificarla de acuerdo a como desean
-trabajar la estructura de su proyecto :smiley:.
 
 ### Definición del producto
 
-En el `README.md` colocar cómo conociste el mercado de las redes sociales, cómo
-descubriste las necesidades de los usuarios, cómo llegaste  la definición final
-de tu producto. Si tienes fotos de entrevistas, cuestionarios y/o sketches
-(bocetos) compártelos. Es importante que detalles:
+¿Cómo conociste el mercado de las redes sociales?
+
+¿Cómo descubriste las necesidades de los usuarios?
+
+¿Cómo llegaste  la definición final de tu producto?
+
+Si tienes fotos de entrevistas, cuestionarios y/o sketches
+(bocetos) compártelos. 
+
+
+Es importante que detalles:
 
 * Cuáles son los elementos básicos que tiene una red social
+perfil del usuario, un feed o muro público, likes
 * Quiénes son los principales usuarios de producto
+Desarrollador@s Web que sean estudiantes de bootcamps Ciudad México
 * Cómo descubriste las necesidades de los usuarios
+Nos percatamos que no habían muchos Bootcamps en la Ciudad y que de esos pocos no había un canal de comunicación directa.
 * Qué problema resuelve el producto para estos usuarios
+Falta de comunicación y comunidad entre bootcamps de la ciudad
 * Cuáles son los objetivos de estos usuarios en relación con el producto
+Conocer más gente que se encuentre en aprendisaje intensivo y recibir recomendación o ayuda en proyectos y dudas.
 * Cuáles son las principales funcionalidades del producto y cuál es su prioridad
+Crear comunidad en área metropolitana.
 * Cómo verificaste que el producto les está resolviendo sus problemas
+(Falta testeo de prototipo)
 * Cómo te asegurarás que estos usuarios usen este producto
+(Falta testeo de alta fidelidad)
 
 Para poder llegar a estas definiciones te recomendamos ver: entrevistas con
 usuarios y tests de usabilidad.
 
 ### Historias de usuario
 
-Una vez que entiendas las necesidades de tu usuario, escribe las Historias de
-Usuario que representen todo lo que el usuario necesita hacer/ver. Asegúrate
-de incluir una definición de terminado (definition o done) para cada una.
+Yo como usuario quiero poder logearme por fB o Google
+Yo como usuario ver la información general en un muro de incio
+Yo como usuario quiero publicar un posteo
+Yo como usuario quiero editar o eliminar mi post
+Yo como usuario quiero controlar la privacidad de mi publicación (publica-privada)
+Yo como usuario quiero interactuar con estudiantes de otros bootcamps (otros usuarios)
+Yo como usuario quiero poner un like a una publicación 
+yo como usuario quiero ver el conteo de likes de una publicación
+Yo como usuario quiero ver una confirmación antes de eliminar un post.
+Yo como usuario quiero ver mi perfil, mi información (Acerca de mí)
 
 ### Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
 Debes definir cuál será el flujo que seguirá el usuario dentro de tu producto y
-con eso deberás diseñar la Interfaz de Usuario (UI por sus siglas en inglés) de
+con eso deberás diseñar la Interfaz de Usuario (UI) de
 esta red social que siga este flujo.
 Este diseño debe representar la solución que se implementará finalmente en
 código.
 
 ### Responsive
-
-Debe verse bien en dispositivos de pantallas grandes
-(computadoras/es, laptops, etc.) y pequeñas (tablets, celulares, etc.). Te
-sugerimos seguir la técnica de `mobile first` (más detalles sobre esta técnica
-al final).
-
+Mobile First
 ### Pruebas unitarias (unit tests)
 
 Los tests unitarios deben cubrir un mínimo del 70% de _statements_, _functions_,
