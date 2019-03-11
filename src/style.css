@@ -164,7 +164,8 @@ input:focus{
     background-color: #2e2e2e;
     border:none;
     color:#81d1d9;
-    margin-left:76%;
+   position: relative;
+   left: 73%;
 
 }
 .button-reg:focus{
@@ -194,6 +195,12 @@ input:focus{
 .color-google{
     background-color: #c0ccda;
     margin-top: 1.5em;
+}
+
+button img {
+    
+    position: fixed;
+    left: 60px;
 }
 
 hr{
@@ -250,9 +257,10 @@ p{
  }
  .margin-warning{
     padding:0px;
-
+ }
 
  .avatar{
    width:45px; 
    height:45px;
    border-radius: 50%;
+ }
