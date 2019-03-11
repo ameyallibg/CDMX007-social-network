@@ -1,65 +1,129 @@
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+const signIn = document.getElementById("sign-in-new");
+const password = document.getElementById("password-new");
+const buttonSignIn = document.getElementById("button-sign-in-new");
+const signinGoogle = document.getElementById("button-sign-in-google");
+const buttonSignInFacebook = document.getElementById("button-sign-in-facebook");
+const signInRegister = document.getElementById("sign-in-reg");
+const passwordRegister = document.getElementById("password-reg");
+const buttonSignInRegister = document.getElementById("button-sign-in-reg");
+const show = document.getElementById("show")
+const modalWarning = document.getElementById("modal-warning")
+const modalInvalidEmail =document.getElementById("modal-invalid-email")
+const nameUser = document.getElementById("name")
+const userNameWall = document.getElementById("userNameWall")
 
-ui.start('#firebaseui-auth-container', {
-    signInOptions: [
-      firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
-    // Other config options...
+
+    buttonSignIn.addEventListener("click",() => {
+        
+        let signInValue = signIn.value;
+        let passwordValue = password.value;
+        console.log(signInValue);
+        console.log(passwordValue);
+
+   firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
+   .then(function(){
+       verification()
+   })
+   .catch(function(error) {
+    // Handle Errors here.
+    // var errorCode = error.code;
+    var errorMessage = error.message;
+    // console.log(errorCode);
+    console.log(errorMessage);
+    modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
+    <p> ${errorMessage} </p>
+  </div>`;
   });
-  ui.start('#firebaseui-auth-container', {
-    signInOptions: [
-      // List of OAuth providers supported.
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID
-    ],
-    // Other config options...
-  });
 
-  var uiConfig = {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // User successfully signed in.
-        // Return type determines whether we continue the redirect automatically
-        // or whether we leave that to developer to handle.
-        return true;
-      },
-      uiShown: function() {
-        // The widget is rendered.
-        // Hide the loader.
-        document.getElementById('loader').style.display = 'none';
-      }
-    },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: 'popup',
-    signInSuccessUrl: '<url-to-redirect-to-on-success>',
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
-    // Terms of service url.
-    tosUrl: '<your-tos-url>',
-    // Privacy policy url.
-    privacyPolicyUrl: '<your-privacy-policy-url>'
-  };
-
-  // The start method will wait until the DOM is loaded.
-ui.start('#firebaseui-auth-container', uiConfig);
+    })
 
 
-var provider = new firebase.auth.GoogleAuthProvider();
+    buttonSignInRegister.addEventListener("click", () =>{
 
-firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // ...
-  }).catch(function(error) {
+        let signInValue = signInRegister.value;
+        let passwordValue = passwordRegister.value;
+        firebase.auth().signInWithEmailAndPassword(signInValue, passwordValue) 
+        .catch(function(error) 
+        {
+            // Handle Errors here.
+            var errorCode = error.code
+            var errorMessage = error.message;
+            if (errorMessage == 'The email address is badly formatted.') {
+              show.innerHTML= ` <div class=" alert-warning alert" role="alert">
+              <p class="margin-warning">La direccion del correo no es valida</p>
+            </div>`;
+              
+            }else {
+              show.innerHTML= ` <div class=" alert-warning alert" role="alert">
+              <p class="margin-warning">${errorCode}</p>
+            </div>`;
+
+            }
+
+            
+            // ...
+          });
+
+
+
+    })
+
+const verification = () => {
+    var user = firebase.auth().currentUser;
+
+user.sendEmailVerification().then(function() {
+  // Email sent.
+  modalWarning.innerHTML= ` <div class="alert alert-warning" role="alert">
+  <p>Se te ha enviado un correo de verificacion de Usuario</p>
+</div>`;
+
+}).catch(function(error) {
+    console.log("error");
+
+  // An error happened.
+});
+}
+// const getName = () => {
+// let nameValue = nameUser.value;
+// localStorage.setItem('nombreusuario',nameValue);
+// window.location.href = "wall.html";
+// }
+
+buttonSignInFacebook.addEventListener("click", () =>{
+  
+  const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithRedirect(provider).then(function(result) {
+        if (result.credential) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    });
+  
+
+  
+
+
+
+
+
+signinGoogle.addEventListener("click", () => {
+  
+  var googleProvider = new firebase.auth.GoogleAuthProvider()
+  firebase.auth().signInWithRedirect(googleProvider)
+  .catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -69,25 +133,5 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
     var credential = error.credential;
     // ...
   });
-
-
-  firebase.auth().signInWithRedirect(provider);
-
-  firebase.auth().getRedirectResult().then(function(result) {
-    if (result.credential) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // ...
-    }
-    // The signed-in user info.
-    var user = result.user;
-  }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
+ 
+})
