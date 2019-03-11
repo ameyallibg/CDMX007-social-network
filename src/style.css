@@ -219,6 +219,7 @@ p{
     text-align: center;
     padding: 15px;
  }
+
  .modal-background{
     background-color: #2e2e2e;
     margin-top: 6em;
@@ -249,4 +250,9 @@ p{
  }
  .margin-warning{
     padding:0px;
- }
+
+
+ .avatar{
+   width:45px; 
+   height:45px;
+   border-radius: 50%;
