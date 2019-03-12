@@ -1,9 +1,18 @@
+
+html,body{
+    background-color: #2E2E2E;
+    color: white;
+ 
+ }
 .login{
     width: 100%;
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-top: 33.33%;
-    color:white;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 20%;
+    color: white;
+}
+input::placeholder { 
+    color: white; 
 }
 .headerIndex{
     padding-top: 4%;
@@ -12,12 +21,10 @@
 }
 header h1{
     margin:0px;
+    font-size:9vw;
 
 }
-* {
-    background-color: #2E2E2E;
- 
- }
+
  
  header {
  
@@ -69,6 +76,7 @@ header h1{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
+    background-color: #2e2e2e;
  
  }
  
@@ -77,11 +85,141 @@ header h1{
     height: 125px;
     color: white;
     text-align: left;
+    background-color: #2e2e2e;
  
  
  
  }
  
+ /* The popup chat - hidden by default */
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 15%;
+    right: auto;
+    border: 2px solid #7fff00;
+    z-index: 9;
+}
+/* Add styles to the form container */
+.form-container {
+    max-width: 322px;
+    padding: 10px;
+    background-color: #2E2E2E;
+}
+/* Full-width textarea */
+.form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+}
+h3 {
+    color: #7fff00;
+}
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+}
+/* Set a style for the submit/send button */
+.form-container .btn {
+    background-color: #607d8b;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+    background-color: #607d8b;
+}
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+.color-green{
+    color:#7fff00;
+}
+.input-type{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: white;
+    width: 100%;
+    background-color: #2e2e2e;
+
+}
+#password-reg{
+    padding-top: 2em;
+}
+input:focus{
+    outline: none;
+}
+.button-reg{
+    background-color: #2e2e2e;
+    border:none;
+    color:#81d1d9;
+   position: relative;
+   left: 73%;
+
+}
+.button-reg:focus{
+    outline:none
+}
+.button-nav{
+    color: white;
+    width: 100%;
+    height: 3em;
+    border-radius: 2px;
+    border:none;
+}
+.color-login{
+    background-color: #47525e;
+    margin-top: 1em;
+}
+.color-twitter{
+    background-color: #8492a6;
+    margin-top: 1.5em;
+
+}
+.color-facebook{
+    background-color: #3c4858;
+    margin-top:.5em;
+    
+}
+.color-google{
+    background-color: #c0ccda;
+    margin-top: 1.5em;
+}
+
+button img {
+    
+    
+    left: 60px;
+}
+
+hr{
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid;
+}
+#titulo{
+    color:chartreuse;
+}
+p{
+    padding-top:1em;
+    margin: 0px;
+}
+
  footer {
     position: fixed;
     left: 0;
@@ -89,4 +227,42 @@ header h1{
     width: 100%;
     text-align: center;
     padding: 15px;
+ }
+
+ .modal-background{
+    background-color: #2e2e2e;
+    margin-top: 6em;
+
+ }
+ .margin-input{
+    margin-bottom:2em;
+
+ }
+
+ button:hover{
+     opacity: .8;
+ }
+ .select-class{
+    border-radius: 4px;
+    /* background-color: chartreuse; */
+    width: 60%;
+    padding-left: 2%;
+ }
+ .radio-margin{
+    margin-left: 20%;
+ }
+ .alert{
+    border-radius: 4px;
+    padding-left: 3%;
+    margin-top: 1em;
+    margin-bottom: 0px;
+ }
+ .margin-warning{
+    padding:0px;
+ }
+
+ .avatar{
+   width:45px; 
+   height:45px;
+   border-radius: 50%;
  }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -23,12 +23,12 @@
     <header>
         <nav class="nav justify-content-center" style="background-color:#2E2E2E" id="blockBar">
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-                <span class="navbar-toggler-icon" style="background-image: url(assets/astronaut.png); width:45px; height:45px;"></span>
+                <span id="avatar-user" class="navbar-toggler-icon" style="background-image: url(assets/astronaut.png); width:45px; height:45px;"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav" id="infoUser">
                     <li>Bienvenid@</li>
-                    <li>Ameyalli</li>
+                    <li id="name-user"></li>
                     <li id="emailUser"></li>
                 </ul>
                 <ul class="navbar-nav">
@@ -49,9 +49,23 @@
                     <a class="nav-item" href="#">Geek It</a>
                 </li>
             </ul>
-            <a class="nav-item" href="#">
-                <img src="assets/edit.png" width="35px" height="35px">
-            </a>
+            <button class="open-button" onclick="openForm()"><img src="assets/edit.png" width="30px" height="30px"></button>
+            <div class="chat-popup" id="myForm">
+                <form action="/action_page.php" class="form-container">
+                    <h3>Geek it</h3>
+                    <textarea placeholder="Escribe tu mensaje..." name="msg" required></textarea>
+                    <button type="submit" class="btn">Publicar</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+                </form>
+            </div>
+            <script>
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                }
+                function closeForm() {
+                    document.getElementById("myForm").style.display = "none";
+                }
+            </script>
         </nav>
     </header>
     <div class="comments">
