@@ -200,9 +200,8 @@ input:focus{
 }
 
 button img {
-    
-    
-    left: 60px;
+   position: fixed;
+   left: 70px;
 }
 
 hr{
