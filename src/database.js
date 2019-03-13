@@ -1,4 +1,3 @@
-
 var db = firebase.firestore();
 buttonSignIn.addEventListener('click', (event)=>{
     const addForm = document.forms.namedItem("add-form");
