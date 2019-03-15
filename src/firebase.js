@@ -7,6 +7,7 @@ var app_firebase = {};
         storageBucket: "devtinder-faf61.appspot.com",
         messagingSenderId: "275029217050"
       };
+      
       firebase.initializeApp(config);
       app_firebase = firebase;
 
