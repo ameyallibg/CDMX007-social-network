@@ -151,8 +151,8 @@ input:focus{
 }
 
 button img {
-   position: fixed;
-   left: 70px;
+    
+    left: 60px;
 }
 
 hr{
