@@ -35,15 +35,9 @@ const state = () => {
   
   state();
 
-  
-
-
-
-
-
-
 const showUser = (user) => {
   var user = user;
+   
   if (user.emailVerified) {
       if (!location.href.match(/wall.html$/gm)) {
           location.replace("wall.html")
@@ -53,6 +47,7 @@ const showUser = (user) => {
       }else{
         
       }
+    
       let loc = window.location.href;
       if (loc.includes("wall")) {
           let showme = document.getElementById("showme");
@@ -62,35 +57,16 @@ const showUser = (user) => {
           let email = user.email;
           showme.innerHTML =  `<button onclick="signOutUserRegister()" style="color:white; border:none; background-color: #2e2e2e;">Cerrar sesion</button>`;  
           nameUser.innerHTML = `<p> ${user.displayName} </p>`
-          emailUser.innerHTML = `<p>${email}</p>`
+          emailUser.innerHTML = `${email}`
           avatarUser.innerHTML= `<img class="avatar" src="${user.photoURL}">`
       }
       
       
       console.log("e mail veirficado")
-      // window.location.href="wall.html"
-      // let loc = window.location.href;
-      // console.log(loc)
-      // if (loc.includes("wall")) {
-      //     let showme = document.getElementById("showme")
-      //     showme.innerHTML =  `<button onclick="signOutUserRegister()">Cerrar sesion</button> `;
-          
-      // }
-      
-      
-      // localStorage.setItem('botonCerrar',buttonClose)
-      //     window.location.href = "wall.html"
-
-      //     userNameWall.innerHTML = "Hola " + localStorage.getItem('botonCerrar')
-
   }else{
-      // alert("email no verificado")
-
-
   }
-
-
 }
+
 const signOutUserRegister = () => {
   firebase.auth().signOut()
   .then(function(){
@@ -107,5 +83,7 @@ const signOutUserRegister = () => {
 
 
 }
+
+		
 
 

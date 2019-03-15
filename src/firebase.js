@@ -12,6 +12,3 @@ var app_firebase = {};
 
       
       
-
-      
-      
