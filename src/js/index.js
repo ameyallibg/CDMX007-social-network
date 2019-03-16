@@ -210,7 +210,7 @@ window.controlador = {
     const emailUser = document.getElementById("emailUser");
     const emailUserNew = emailUser.textContent
 
-    db.collection("posts").where("email", "==", emailUser.textContent).get().then((querySnapshot) => {
+    db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
       const container = document.getElementById("contenido");
       container.innerHTML = "";
 
@@ -218,5 +218,64 @@ window.controlador = {
         container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
       });
     });
-  }
+  },
+
+
+  posteos:() => {
+ 
+  var db = firebase.firestore();
+  
+  //Agregar comentarios
+  var posteo = document.getElementById("publicar");
+      
+     
+  posteo.addEventListener("click", ()=>{
+    var nombre = document.getElementById('nombre').value;
+      var comentario = document.getElementById('comentario').value; 
+      db.collection("usuarios").add({
+      nombre: nombre,
+      comentario: comentario,
+      
+  })
+  .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      document.getElementById('nombre').value ="";
+      document.getElementById('comentario').value="";
+      
+  })
+  .catch(function (error) {
+      console.error("Error adding document: ", error);
+  });
+  })
+      
+  
+  
+  //leer info
+  var muro = document.getElementById('muro');
+  db.collection("usuarios").onSnapshot((querySnapshot) => {
+     muro.innerHTML=''; 
+      querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data().nombre}`);
+          muro.innerHTML += `
+          <tr>
+          <td>${doc.data().nombre}</td>
+          <td>${doc.data().comentario}</td>
+        </tr>
+        `
+      });
+  });
+
+
+  const emailUser = document.getElementById("emailUser");
+    const emailUserNew = emailUser.textContent
+
+    db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+      const container = document.getElementById("contenido");
+      container.innerHTML = "";
+
+      querySnapshot.forEach((doc) => {
+        container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
+      });
+    });
+}
 }

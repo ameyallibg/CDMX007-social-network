@@ -25,12 +25,6 @@ header h1{
 }
 
  
- header {
- 
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
- 
- }
- 
  .nav-item {
     padding: 5px 25px;
     font-size: 22px;
@@ -79,6 +73,14 @@ header h1{
  
  }
  
+textarea{
+    height: 81px;
+    width: 305px;
+    position: relative;
+    
+
+}
+
  .comment {
     width: 290px;
     height: 125px;
@@ -91,8 +93,10 @@ header h1{
  }
  
  
-h3 {
-    color: #7fff00;
+h4 {
+    color: white;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    text-align: center;
 }
 
 .color-green{
@@ -155,12 +159,15 @@ button img {
     left: 60px;
 }
 
-hr{
+h1{
     text-align: center;
+    color:chartreuse;
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+ 
 }
 #titulo{
     color:chartreuse;
@@ -171,9 +178,8 @@ p{
 }
 
  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    
+    background-color: black;
     width: 100%;
     text-align: center;
     padding: 15px;
