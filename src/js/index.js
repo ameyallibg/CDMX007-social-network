@@ -39,7 +39,7 @@ window.controlador = {
       });
     }
 
-    if (window.location.href.includes("index")) {
+    if (window.location.href.includes("registro")) {
       buttonSignIn.addEventListener('click', (event) => {
         
         const addForm = document.forms.namedItem("add-form");
