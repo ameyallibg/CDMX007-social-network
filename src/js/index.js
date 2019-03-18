@@ -49,6 +49,7 @@ window.controlador = {
             email: addForm.elements.email.value,
             mujer: addForm.elements.mujer.value,
             hombre: addForm.elements.hombre.value,
+            comentario: null,
 
           })
           .then((docRef) => {
@@ -230,16 +231,16 @@ window.controlador = {
       
      
   posteo.addEventListener("click", ()=>{
-    var nombre = document.getElementById('nombre').value;
+    // var nombre = document.getElementById('nombre').value;
       var comentario = document.getElementById('comentario').value; 
-      db.collection("usuarios").add({
-      nombre: nombre,
+    //  var emailUserPost = document.getElementById("emailUser").textContent
+      db.collection("posts").push({
       comentario: comentario,
       
   })
   .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
-      document.getElementById('nombre').value ="";
+      // document.getElementById('nombre').value ="";
       document.getElementById('comentario').value="";
       
   })
@@ -251,14 +252,16 @@ window.controlador = {
   
   
   //leer info
-  var muro = document.getElementById('muro');
-  db.collection("usuarios").onSnapshot((querySnapshot) => {
+  // var muro = document.getElementById('muro');
+  db.collection("posts").onSnapshot((querySnapshot) => {
+    const data = []
      muro.innerHTML=''; 
       querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data().nombre}`);
+        data.push({id:doc.id, ...doc.data()})
+        //   console.log(`${doc.id} => ${doc.data().userId}`);
           muro.innerHTML += `
           <tr>
-          <td>${doc.data().nombre}</td>
+          <td>${doc.data().userId}</td>
           <td>${doc.data().comentario}</td>
         </tr>
         `
@@ -269,7 +272,7 @@ window.controlador = {
   const emailUser = document.getElementById("emailUser");
     const emailUserNew = emailUser.textContent
 
-    db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+    db.collection("posts").where("email","==", emailUserNew).get().then((querySnapshot) => {
       const container = document.getElementById("contenido");
       container.innerHTML = "";
 
