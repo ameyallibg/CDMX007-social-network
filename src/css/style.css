@@ -1,4 +1,3 @@
-
 html,body{
     background-color: #2E2E2E;
     color: white;
@@ -25,12 +24,6 @@ header h1{
 
 }
 
- 
- header {
- 
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
- 
- }
  
  .nav-item {
     padding: 5px 25px;
@@ -80,6 +73,14 @@ header h1{
  
  }
  
+textarea{
+    height: 81px;
+    width: 305px;
+    position: relative;
+    
+
+}
+
  .comment {
     width: 290px;
     height: 125px;
@@ -91,59 +92,13 @@ header h1{
  
  }
  
- /* The popup chat - hidden by default */
-.chat-popup {
-    display: none;
-    position: fixed;
-    bottom: 15%;
-    right: auto;
-    border: 2px solid #7fff00;
-    z-index: 9;
-}
-/* Add styles to the form container */
-.form-container {
-    max-width: 322px;
-    padding: 10px;
-    background-color: #2E2E2E;
-}
-/* Full-width textarea */
-.form-container textarea {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-    resize: none;
-    min-height: 200px;
-}
-h3 {
-    color: #7fff00;
-}
-/* When the textarea gets focus, do something */
-.form-container textarea:focus {
-    background-color: #ddd;
-    outline: none;
-}
-/* Set a style for the submit/send button */
-.form-container .btn {
-    background-color: #607d8b;
+ 
+h4 {
     color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    text-align: center;
 }
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-    background-color: #607d8b;
-}
-/* Add some hover effects to buttons */
-.form-container .btn:hover,
-.open-button:hover {
-    opacity: 1;
-}
+
 .color-green{
     color:#7fff00;
 }
@@ -204,12 +159,15 @@ button img {
     left: 60px;
 }
 
-hr{
+h1{
     text-align: center;
+    color:chartreuse;
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+ 
 }
 #titulo{
     color:chartreuse;
@@ -220,9 +178,8 @@ p{
 }
 
  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    
+    background-color: black;
     width: 100%;
     text-align: center;
     padding: 15px;
