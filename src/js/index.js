@@ -227,8 +227,7 @@ window.controlador = {
   
   //Agregar comentarios
   var posteo = document.getElementById("publicar");
-      
-     
+
   posteo.addEventListener("click", ()=>{
     var nombre = document.getElementById('nombre').value;
       var comentario = document.getElementById('comentario').value; 
@@ -247,10 +246,17 @@ window.controlador = {
       console.error("Error adding document: ", error);
   });
   })
-      
   
-  
+  //LIKES
+  var likes=0;
+function like(){
+  document.getElementById("show").innerHTML=likes;
+  likes=likes+1;
+}
+
+
   //leer info
+
   var muro = document.getElementById('muro');
   db.collection("usuarios").onSnapshot((querySnapshot) => {
      muro.innerHTML=''; 
@@ -260,6 +266,8 @@ window.controlador = {
           <tr>
           <td>${doc.data().nombre}</td>
           <td>${doc.data().comentario}</td>
+         <td><button id="button" onclick="like()"><img src="assets/img/like.png"></button></td>
+         <td>${doc.data().likes}
         </tr>
         `
       });
