@@ -15,26 +15,26 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
-            
+
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
 
           verification()
-        }).then(function() {
+        }).then(function () {
           let user = firebase.auth().currentUser;
           firebase.firestore().collection('posts').doc(user.uid).set({
               id: user.uid,
               name: name,
               email: user.email,
               photo: user.photoURL,
-              })
-        .catch(function (error) {
-          var errorMessage = error.message;
-          alert(errorMessage);
-          modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
+            })
+            .catch(function (error) {
+              var errorMessage = error.message;
+              alert(errorMessage);
+              modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
                                           <p> ${errorMessage} </p></div>`;
+            });
         });
-      });
     })
 
     const verification = () => {
@@ -49,18 +49,18 @@ window.controlador = {
       }).then(function () {
         setTimeout(function () {
           window.location.hash = '#/';
-      }, 3000);
-  
-              }).catch(function (error) {
+        }, 3000);
+
+      }).catch(function (error) {
         alert("error");
       });
     }
 
     if (window.location.href.includes("registro")) {
       buttonSignIn.addEventListener('click', (event) => {
-        
+
         const addForm = document.forms.namedItem("add-form");
-        
+
         db.collection("posts").add({
             name: addForm.elements.userId.value,
             email: addForm.elements.email.value,
@@ -110,26 +110,25 @@ window.controlador = {
                                 <p class="margin-warning">${errorCode}</p></div>`;
 
           }
-      });
+        });
     });
 
     buttonSignInFacebook.addEventListener("click", () => {
       const provider = new firebase.auth.FacebookAuthProvider();
 
-      firebase.auth().signInWithRedirect(provider).then(function (result) {
-        }).catch(function (error) {
-         // Handle Errors here.
-         var errorCode = error.code;
-         var errorMessage = error.message;
-         alert(errorCode);
-         alert(errorMessage);
-         // The email of the user's account used.
-         var email = error.email;
-         alert(email);
-         // The firebase.auth.AuthCredential type that was used.
-         var credential = error.credential;
-         alert(credential)
-         // ...
+      firebase.auth().signInWithRedirect(provider).then(function (result) {}).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorCode);
+        alert(errorMessage);
+        // The email of the user's account used.
+        var email = error.email;
+        alert(email);
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        alert(credential)
+        // ...
       });
     });
 
@@ -158,24 +157,24 @@ window.controlador = {
       });
     });
 
-    
+
     signinGoogle.addEventListener("click", () => {
       var googleProvider = new firebase.auth.GoogleAuthProvider()
-      
+
       firebase.auth().signInWithRedirect(googleProvider)
         .catch(function (error) {
-           // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert(errorCode);
-        alert(errorMessage);
-        // The email of the user's account used.
-        var email = error.email;
-        alert(email);
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        alert(credential)
-        // ...
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorCode);
+          alert(errorMessage);
+          // The email of the user's account used.
+          var email = error.email;
+          alert(email);
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          alert(credential)
+          // ...
         });
 
     })
@@ -183,7 +182,7 @@ window.controlador = {
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           showUser(user)
-          }
+        }
       });
     }
 
@@ -203,7 +202,7 @@ window.controlador = {
             firebase.auth().signOut()
               .then(function () {
                 window.location.hash = '#/'
-                
+
               })
               .catch(function (error) {
                 console.log(error);
@@ -238,59 +237,105 @@ window.controlador = {
   },
 
 
-  posteos:() => {
- 
-  var db = firebase.firestore();
-  
-  //Agregar comentarios
-  var posteo = document.getElementById("publicar");
-      
-     
-  posteo.addEventListener("click", ()=>{
-    // var nombre = document.getElementById('nombre').value;
-    const user = firebase.auth().currentUser; 
+  posteos: () => {
+
+    var db = firebase.firestore();
+
+    //Agregar comentarios
+    var posteo = document.getElementById("publicar");
+
+
+    posteo.addEventListener("click", () => {
+      // var nombre = document.getElementById('nombre').value;
+      const user = firebase.auth().currentUser;
       // db.collection("usuarios").add({      
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
-      var comentario = document.getElementById('comentario').value; 
+      var comentario = document.getElementById('comentario').value;
       firebase.firestore().collection('publicaciones').add({
         photo: photoUser,
-        autor : nameUser,
-        mensaje : comentario,
-      // const comentario: comentario,
-      
-  // })
-  // .then(function (docRef) {
-  //     console.log("Document written with ID: ", docRef.id);
-  //     document.getElementById('nombre').value ="";
-  //     document.getElementById('comentario').value="";
-      
-  // })
-  // .catch(function (error) {
-  //     console.error("Error adding document: ", error);
-  // });
-  })
-      
-})
-  
-  //leer info
-  var muro = document.getElementById('muro');
-  db.collection("publicaciones").onSnapshot((querySnapshot) => {
-     muro.innerHTML=''; 
+        autor: nameUser,
+        mensaje: comentario,
+        // const comentario: comentario,
+
+        // })
+        // .then(function (docRef) {
+        //     console.log("Document written with ID: ", docRef.id);
+        //     document.getElementById('nombre').value ="";
+        //     document.getElementById('comentario').value="";
+
+        // })
+        // .catch(function (error) {
+        //     console.error("Error adding document: ", error);
+        // });
+      })
+
+    })
+
+    //leer info
+
+    var muro = document.getElementById('muro');
+
+
+    db.collection("publicaciones").onSnapshot((querySnapshot) => {
+      muro.innerHTML = '';
       querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data().autor}`);
-          muro.innerHTML += `
-          <tr>
+        console.log(`${doc.id} => ${doc.data().autor}`);
+        muro.innerHTML += `
+        <tr  >
           <td>${doc.data().autor}</td>
-          
           <td>${doc.data().mensaje}</td>
+          <td><button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button></td> 
+          <td><button id= "${doc.id}"  class="tablasEditar" >Editar</button></td>
         </tr>
         `
       });
-  });
+      const tablas = document.getElementsByClassName('tablasEliminar')
+      for (let i = 0; i < tablas.length; i++) {
+        tablas[i].addEventListener('click', () => {
+          let id = tablas[i].id
+          db.collection("publicaciones").doc(id).delete().then(function () {
+            console.log("Document successfully deleted!");
+          }).catch(function (error) {
+            console.error("Error removing document: ", error);
+          });
 
 
-  const emailUser = document.getElementById("emailUser");
+
+
+        })
+      }
+
+      const tabla = document.getElementsByClassName('tablasEditar')
+      for (let i = 0; i < tablas.length; i++) {
+        tabla[i].addEventListener('click', () => {
+          let id = tabla[i].id
+          // Add a new document in collection "cities"
+          var editar = db.collection("publicaciones").doc(id);
+
+          // Set the "capital" field of the city 'DC'
+          return editar.update({
+              mensaje: ""
+            })
+            .then(function () {
+              console.log("Document successfully updated!");
+            })
+            .catch(function (error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
+
+
+
+
+        })
+      }
+
+
+    });
+
+
+    const emailUser = document.getElementById("emailUser");
     const emailUserNew = emailUser.textContent
 
     db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
@@ -301,7 +346,7 @@ window.controlador = {
         container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
       });
     });
-}
+  }
 
 
 }

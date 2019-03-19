@@ -1,7 +1,7 @@
 <header>
     <nav class="nav justify-content-center" style="background-color:#2E2E2E" id="blockBar">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-            <span id="avatar-user" class="navbar-toggler-icon" style="background-image: url(assets/astronaut.png); width:45px; height:45px;"></span>
+            <span id="avatar-user" class="navbar-toggler-icon" style="background-image: url(assets/img/astro.png); width:45px; height:45px;"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMenu">
@@ -27,8 +27,8 @@
 
 <div class="container">
     <h4>Agregar comentarios</h4>
-    <input type="text" id="nombre" placeholder="Nombre" class="form-control my-3">
-    <input type="text" id="comentario" placeholder="Comentario" class="form-control my-3">
+    
+    <input type="text" id="comentario" placeholder="Comentario" class="form-control my-3" required >
 
     <button class="btn btn-info" id="publicar" >Publicar</button>
     <br>
@@ -38,6 +38,8 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Comentario</th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Editar</th>
             </tr>
         </thead>
         <tbody id="muro">
