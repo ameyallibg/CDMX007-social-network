@@ -8,22 +8,33 @@ window.controlador = {
     const buttonSignIn = document.getElementById("button-sign-in-new");
     const modalWarning = document.getElementById("modal-warning");
     const modalInvalidEmail = document.getElementById("modal-invalid-email");
+    const nombre = document.getElementById("name")
     var db = firebase.firestore();
 
     buttonSignIn.addEventListener("click", () => {
       let signInValue = signIn.value;
       let passwordValue = password.value;
-     
+      let name = nombre.value;
+            
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
+
           verification()
-        })
+        }).then(function() {
+          let user = firebase.auth().currentUser;
+          firebase.firestore().collection('posts').doc(user.uid).set({
+              id: user.uid,
+              name: name,
+              email: user.email,
+              photo: user.photoURL,
+              })
         .catch(function (error) {
           var errorMessage = error.message;
           alert(errorMessage);
           modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
                                           <p> ${errorMessage} </p></div>`;
         });
+      });
     })
 
     const verification = () => {
@@ -34,18 +45,24 @@ window.controlador = {
         modalWarning.innerHTML = ` <div class="alert alert-warning" role="alert">
         <p>Se te ha enviado un correo de verificacion de Usuario</p></div>`;
 
-      }).catch(function (error) {
+
+      }).then(function () {
+        setTimeout(function () {
+          window.location.hash = '#/';
+      }, 3000);
+  
+              }).catch(function (error) {
         alert("error");
       });
     }
 
-    if (window.location.href.includes("index")) {
+    if (window.location.href.includes("registro")) {
       buttonSignIn.addEventListener('click', (event) => {
         
         const addForm = document.forms.namedItem("add-form");
         
         db.collection("posts").add({
-            userId: addForm.elements.userId.value,
+            name: addForm.elements.userId.value,
             email: addForm.elements.email.value,
             mujer: addForm.elements.mujer.value,
             hombre: addForm.elements.hombre.value,
@@ -230,36 +247,43 @@ window.controlador = {
       
      
   posteo.addEventListener("click", ()=>{
-    var nombre = document.getElementById('nombre').value;
+    // var nombre = document.getElementById('nombre').value;
+    const user = firebase.auth().currentUser; 
+      // db.collection("usuarios").add({      
+      const photoUser = user.photoURL;
+      const nameUser = user.displayName;
       var comentario = document.getElementById('comentario').value; 
-      db.collection("usuarios").add({
-      nombre: nombre,
-      comentario: comentario,
+      firebase.firestore().collection('publicaciones').add({
+        photo: photoUser,
+        autor : nameUser,
+        mensaje : comentario,
+      // const comentario: comentario,
       
-  })
-  .then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
-      document.getElementById('nombre').value ="";
-      document.getElementById('comentario').value="";
+  // })
+  // .then(function (docRef) {
+  //     console.log("Document written with ID: ", docRef.id);
+  //     document.getElementById('nombre').value ="";
+  //     document.getElementById('comentario').value="";
       
-  })
-  .catch(function (error) {
-      console.error("Error adding document: ", error);
-  });
+  // })
+  // .catch(function (error) {
+  //     console.error("Error adding document: ", error);
+  // });
   })
       
-  
+})
   
   //leer info
   var muro = document.getElementById('muro');
-  db.collection("usuarios").onSnapshot((querySnapshot) => {
+  db.collection("publicaciones").onSnapshot((querySnapshot) => {
      muro.innerHTML=''; 
       querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data().nombre}`);
+          console.log(`${doc.id} => ${doc.data().autor}`);
           muro.innerHTML += `
           <tr>
-          <td>${doc.data().nombre}</td>
-          <td>${doc.data().comentario}</td>
+          <td>${doc.data().autor}</td>
+          
+          <td>${doc.data().mensaje}</td>
         </tr>
         `
       });
@@ -278,4 +302,6 @@ window.controlador = {
       });
     });
 }
+
+
 }
