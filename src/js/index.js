@@ -244,7 +244,8 @@ window.controlador = {
   
   //Agregar comentarios
   var posteo = document.getElementById("publicar");
-
+      
+     
   posteo.addEventListener("click", ()=>{
     // var nombre = document.getElementById('nombre').value;
     const user = firebase.auth().currentUser; 
@@ -271,10 +272,8 @@ window.controlador = {
   })
       
 })
-
-
+  
   //leer info
-
   var muro = document.getElementById('muro');
   db.collection("publicaciones").onSnapshot((querySnapshot) => {
      muro.innerHTML=''; 
