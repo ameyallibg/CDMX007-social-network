@@ -1,9 +1,9 @@
-#Geek It!
+
 ## Introducción
 
 Geek It es una red social dirigida a estudiantes de bootcamps en la Ciudad de México, al 
 realizar una encuesta analizamos que los integrantes de bootcamps en desarrollo web a pesar de contar con grupos 
-especificos para compartir información o eventos en otras redes sociales, ellos no contaban con un canal local y específico, relacionado con gente que estuviera aprendiendo a su mismo ritmo pero en diferentes bootcamps.
+especificos para compartir información o eventos en otras redes sociales, no contaban con un canal local y específico, relacionado con gente que estuviera aprendiendo a su mismo ritmo pero en diferentes bootcamps.
 
 * Bedu
 * Ironhack 
@@ -13,14 +13,14 @@ especificos para compartir información o eventos en otras redes sociales, ellos
 * Muktek
 * Tec de monterrey
 
-##Puntos esenciales de Geek It:
+## Puntos esenciales de Geek It:
 
-Interacción, comunicación en tiempo real.
+Comunicación en tiempo real.
 
 Relación - Gustos o intereses 
  
 Contenido de interés - Documentos - Eventos - Recomendación de Trabajo o Freelance.
-¡[GeekIt](https://ibb.co/T1B5FW2)
+
 
 ## Objetivos
 
@@ -44,10 +44,7 @@ La lógica del proyecto esta implementado completamente:
 ¿Cómo llegamos a la definición final del producto?
 
 Imágenes, cuestionarios 
- ![Reporte de formularios](https://ibb.co/BtD18tb) (https://ibb.co/yFFzBYJ)
-
-
-Es importante que detalles:
+ 
 
 * Cuáles son los elementos básicos que tiene una red social
 perfil del usuario, un feed o muro público, likes
@@ -66,25 +63,23 @@ Crear comunidad en área metropolitana.
 * Cómo te asegurarás que estos usuarios usen este producto
 (Falta testeo de alta fidelidad)
 
-Para poder llegar a estas definiciones te recomendamos ver: entrevistas con
-usuarios y tests de usabilidad.
 
 ### Historias de usuario
 
-Yo como usuario quiero poder logearme por fB o Google
-Yo como usuario ver la información general en un muro de incio
-Yo como usuario quiero publicar un posteo
-Yo como usuario quiero editar o eliminar mi post
-Yo como usuario quiero controlar la privacidad de mi publicación (publica-privada)
-Yo como usuario quiero interactuar con estudiantes de otros bootcamps (otros usuarios)
-Yo como usuario quiero poner un like a una publicación 
-yo como usuario quiero ver el conteo de likes de una publicación
-Yo como usuario quiero ver una confirmación antes de eliminar un post
-Yo como usuario quiero ver mi información (Acerca de mí)
+* Yo como usuario quiero poder logearme por fB o Google
+* Yo como usuario ver la información general en un muro de incio
+* Yo como usuario quiero publicar un posteo
+* Yo como usuario quiero editar o eliminar mi post
+* Yo como usuario quiero controlar la privacidad de mi publicación (publica-privada)
+* Yo como usuario quiero interactuar con estudiantes de otros bootcamps (otros usuarios)
+* Yo como usuario quiero poner un like a una publicación 
+* yo como usuario quiero ver el conteo de likes de una publicación
+* Yo como usuario quiero ver una confirmación antes de eliminar un post
+* Yo como usuario quiero ver mi información (Acerca de mí)
 
 ### Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
-Construimos un prototipo de baja fidelidad en **MARVEL** *click aquí*
+Construimos un prototipo de baja fidelidad en **MARVEL** [click aquí](https://marvelapp.com/b3j3ci1/screen/54084027)
 
 ### Responsive
 Mobile First
@@ -200,3 +195,7 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 | Presentaciones | 
 
 ***
+
+### Modelo de Negocio
+
+### Conclusiones
