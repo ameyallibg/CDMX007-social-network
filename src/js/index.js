@@ -300,13 +300,13 @@ window.controlador = {
       querySnapshot.forEach((doc) => {
         
         muro.innerHTML += `
-        <tr  >
-          <td>${doc.data().autor}</td>
+        <div class="container-pub">
+          <p>${doc.data().autor}</p>
           <img src="${doc.data().photo}" class="avatar">
           <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
-          <td><button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button></td> 
-          <td><button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button></td> 
-        </tr>
+          <button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button> 
+          <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+        </div>
         `
       });
       const tablas= document.getElementsByClassName("tablas");

@@ -248,3 +248,9 @@ footer{
    height:45px;
    border-radius: 50%;
  }
+ .container-pub{
+    background-color: #343A40;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    text-align: center;
+ }
