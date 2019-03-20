@@ -260,6 +260,7 @@ window.controlador = {
       // db.collection("usuarios").add({      
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
+      const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
       let likes = 0
       if (comentario == "") {
@@ -271,6 +272,7 @@ window.controlador = {
           photo: photoUser,
           autor: nameUser,
           mensaje: comentario,
+          email:emailUser,
           like: 0,
           // const comentario: comentario,
 
@@ -303,9 +305,13 @@ window.controlador = {
 
         const user = firebase.auth().currentUser;
 
-        const nameUser = user.displayName;
+        const mailUser = user.email;
 
-        if (nameUser === doc.data().autor) {
+        console.log(user.email)
+
+        console.log(doc)
+
+        if (mailUser === doc.data().email) {
           muro.innerHTML += `
         <div class="container-pub">
           <p>${doc.data().autor}</p>
@@ -321,7 +327,7 @@ window.controlador = {
           <div class="container-pub">
             <p>${doc.data().autor}</p>
             <img src="${doc.data().photo}" class="avatar">
-            <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true" class="textArea">${doc.data().mensaje}</textarea>
+            <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
             
             <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
           </div>
@@ -362,10 +368,15 @@ window.controlador = {
 
       const tablasEliminar = document.getElementsByClassName('tablasEliminar')
       for (let i = 0; i < tablasEliminar.length; i++) {
+
         tablasEliminar[i].addEventListener('click', () => {
+
           if (confirm("¿Estas seguro de eliminar este mensaje?") == true) {
+
             let id = tablasEliminar[i].id
+
             db.collection("publicaciones").doc(id).delete().then(function () {
+              
               console.log("Document successfully deleted!");
             }).catch(function (error) {
               console.error("Error removing document: ", error);
@@ -376,20 +387,15 @@ window.controlador = {
 
       const tablasEditar = document.getElementsByClassName('tablasEditar')
       for (let i = 0; i < tablasEditar.length; i++) {
+
         tablasEditar[i].addEventListener('click', () => {
           if (confirm("¿Estas seguro de editar este mensaje?") == true) {
-            
-            const mensajeTex = document.getElementsByClassName("textArea");
-            
-            for (let i = 0; i < mensajeTex.length; i++){
-              console.log(mensajeTex[i].value)
-            }
-            
-            let id = tablasEditar[i].id
 
+            let id = tablasEditar[i].id
             
             var publiEditada = db.collection("publicaciones").doc(id);
-            console.log(publiEditada);
+
+            
             // Set the "capital" field of the city 'DC'
             return publiEditada.update({
                 mensaje: true
