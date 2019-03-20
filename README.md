@@ -73,7 +73,7 @@ Crear comunidad en área metropolitana.
 * Yo como usuario quiero controlar la privacidad de mi publicación (publica-privada)
 * Yo como usuario quiero interactuar con estudiantes de otros bootcamps (otros usuarios)
 * Yo como usuario quiero poner un like a una publicación 
-* yo como usuario quiero ver el conteo de likes de una publicación
+* Yo como usuario quiero ver el conteo de likes de una publicación
 * Yo como usuario quiero ver una confirmación antes de eliminar un post
 * Yo como usuario quiero ver mi información (Acerca de mí)
 
@@ -113,7 +113,7 @@ La interfaz debe permitir lo siguiente:
 
 * Perspectiva de interfaz:
 
-  ![Login](https://ibb.co/BtD18tb)
+  ![Login](http://img.fenixzone.net/i/JCe6ZIE.png)
 
 #### Muro/timeline de la red social
 
