@@ -19,43 +19,28 @@ window.controlador = {
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
           var user = firebase.auth().currentUser;
-          
+
           user.updateProfile({
             displayName: name,
             photoURL: "assets/img/astro.png"
-          }).then(function() {
+          }).then(function () {
             // Update successful.
-          }).catch(function(error) {
+          }).catch(function (error) {
             // An error happened.
           });
           verification()
-<<<<<<< HEAD
-        }).then(function () {
-          let user = firebase.auth().currentUser;
-          firebase.firestore().collection('posts').doc(user.uid).set({
-              id: user.uid,
-              name: name,
-              email: user.email,
-              photo: user.photoURL,
-            })
+            // }).then(function() {
+            //   let user = firebase.auth().currentUser;
+            // firebase.firestore().collection('posts').doc(user.uid).set({
+            //     id: user.uid,
+            //     name: name,
+            //     email: user.email,
+            //     photo: user.photoURL,
+            //     })
             .catch(function (error) {
               var errorMessage = error.message;
               alert(errorMessage);
               modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
-=======
-        // }).then(function() {
-        //   let user = firebase.auth().currentUser;
-          // firebase.firestore().collection('posts').doc(user.uid).set({
-          //     id: user.uid,
-          //     name: name,
-          //     email: user.email,
-          //     photo: user.photoURL,
-          //     })
-        .catch(function (error) {
-          var errorMessage = error.message;
-          alert(errorMessage);
-          modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
->>>>>>> upstrem/master
                                           <p> ${errorMessage} </p></div>`;
             });
         });
@@ -275,168 +260,172 @@ window.controlador = {
       // db.collection("usuarios").add({      
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
-<<<<<<< HEAD
       var comentario = document.getElementById('comentario').value;
-      firebase.firestore().collection('publicaciones').add({
-        photo: photoUser,
-        autor: nameUser,
-        mensaje: comentario,
-        like: 0
-        // const comentario: comentario,
+      let likes = 0
+      if (comentario == "") {
+        alert("debes agregar un comentario")
 
-        // })
-        // .then(function (docRef) {
-        //     console.log("Document written with ID: ", docRef.id);
-        //     document.getElementById('nombre').value ="";
-        //     document.getElementById('comentario').value="";
 
-        // })
-        // .catch(function (error) {
-        //     console.error("Error adding document: ", error);
-        // });
-      })
+      } else {
+        firebase.firestore().collection('publicaciones').add({
+          photo: photoUser,
+          autor: nameUser,
+          mensaje: comentario,
+          like: 0,
+          // const comentario: comentario,
 
+          // })
+          // .then(function (docRef) {
+          //     console.log("Document written with ID: ", docRef.id);
+          //     document.getElementById('nombre').value ="";
+          //     document.getElementById('comentario').value="";
+
+          // })
+          // .catch(function (error) {
+          //     console.error("Error adding document: ", error);
+          // });
+        })
+
+      }
     })
 
-    //leer info
 
+
+
+
+    //leer info
     var muro = document.getElementById('muro');
 
 
     db.collection("publicaciones").onSnapshot((querySnapshot) => {
       muro.innerHTML = '';
       querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().autor}`);
-        muro.innerHTML += `
-        <tr  >
-          <td>${doc.data().autor}</td>
-          <img src="${doc.data().photo}" class="avatar">
-          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
-          <td><button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button></td> 
-          <td><button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button></td> 
-        </tr>
-=======
-      var comentario = document.getElementById('comentario').value; 
-       let likes = 0
-      if (comentario == "") {
-        alert("debes agregar un comentario")
-        
-      
-      }else {firebase.firestore().collection('publicaciones').add({
-        photo: photoUser,
-        autor : nameUser,
-        mensaje : comentario,
-        like: 0,
-      // const comentario: comentario,
-      
-  // })
-  // .then(function (docRef) {
-  //     console.log("Document written with ID: ", docRef.id);
-  //     document.getElementById('nombre').value ="";
-  //     document.getElementById('comentario').value="";
-      
-  // })
-  // .catch(function (error) {
-  //     console.error("Error adding document: ", error);
-  // });
-  })
 
-}  
-})
+        const user = firebase.auth().currentUser;
 
+        const nameUser = user.displayName;
 
-
-
-  
-  //leer info
-  var muro = document.getElementById('muro');
-  db.collection("publicaciones").onSnapshot((querySnapshot) => {
-      muro.innerHTML = '';
-      querySnapshot.forEach((doc) => {
-        
-        muro.innerHTML += `
+        if (nameUser === doc.data().autor) {
+          muro.innerHTML += `
         <div class="container-pub">
           <p>${doc.data().autor}</p>
           <img src="${doc.data().photo}" class="avatar">
           <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
           <button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button> 
+          <button id= "${doc.id}"  class="tablasEditar" >Editar</button> 
           <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
         </div>
->>>>>>> upstrem/master
         `
+        } else {
+          muro.innerHTML += `
+          <div class="container-pub">
+            <p>${doc.data().autor}</p>
+            <img src="${doc.data().photo}" class="avatar">
+            <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true" class="textArea">${doc.data().mensaje}</textarea>
+            
+            <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+          </div>
+          `
+        }
+
       });
-      const tablas= document.getElementsByClassName("tablas");
-     
-      
+
+
+      const tablas = document.getElementsByClassName("tablas");
+
+
       for (let i = 0; i < tablas.length; i++) {
         // let liker = parseInt(tablas[i].value)
         tablas[i].addEventListener("click", (e) => {
+
           let id = tablas[i].id;
-          
+
           let likeit = parseInt(e.target.dataset.like)
-          likeit ++;
+          likeit++;
           console.log(likeit)
-          
+
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
-            like: likeit,
-          }).then(function() {
-            console.log("Document successfully updated!");
+              like: likeit,
+            }).then(function () {
+              console.log("Document successfully updated!");
+            })
+            .catch(function (error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
+
         })
-        .catch(function(error) {
-            // The document probably doesn't exist.
-            console.error("Error updating document: ", error);
-        });
-        
-        })
-        
-        
-      }  
+
+
+      }
 
       const tablasEliminar = document.getElementsByClassName('tablasEliminar')
       for (let i = 0; i < tablasEliminar.length; i++) {
         tablasEliminar[i].addEventListener('click', () => {
-<<<<<<< HEAD
-          let id = tablasEliminar[i].id
-=======
-          let id = tablaEliminars[i].id
->>>>>>> upstrem/master
-          db.collection("publicaciones").doc(id).delete().then(function () {
-            console.log("Document successfully deleted!");
-          }).catch(function (error) {
-            console.error("Error removing document: ", error);
-          });
+          if (confirm("¿Estas seguro de eliminar este mensaje?") == true) {
+            let id = tablasEliminar[i].id
+            db.collection("publicaciones").doc(id).delete().then(function () {
+              console.log("Document successfully deleted!");
+            }).catch(function (error) {
+              console.error("Error removing document: ", error);
+            });
+          }
         })
       }
+
+      const tablasEditar = document.getElementsByClassName('tablasEditar')
+      for (let i = 0; i < tablasEditar.length; i++) {
+        tablasEditar[i].addEventListener('click', () => {
+          if (confirm("¿Estas seguro de editar este mensaje?") == true) {
+            
+            const mensajeTex = document.getElementsByClassName("textArea");
+            
+            for (let i = 0; i < mensajeTex.length; i++){
+              console.log(mensajeTex[i].value)
+            }
+            
+            let id = tablasEditar[i].id
+
+            
+            var publiEditada = db.collection("publicaciones").doc(id);
+            console.log(publiEditada);
+            // Set the "capital" field of the city 'DC'
+            return publiEditada.update({
+                mensaje: true
+              })
+              .then(function () {
+                console.log("Document successfully updated!");
+              })
+              .catch(function (error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+              });
+
+          }
+        })
+      }
+
+
+
+
+
     });
 
 
-<<<<<<< HEAD
-    const emailUser = document.getElementById("emailUser");
-    const emailUserNew = emailUser.textContent
-=======
->>>>>>> upstrem/master
 
-  // const emailUser = document.getElementById("emailUser");
-  //   const emailUserNew = emailUser.textContent
+    // const emailUser = document.getElementById("emailUser");
+    //   const emailUserNew = emailUser.textContent
 
-<<<<<<< HEAD
-      querySnapshot.forEach((doc) => {
-        container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
-      });
-    });
+    //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+    //     const container = document.getElementById("contenido");
+    //     container.innerHTML = "";
+
+    //     querySnapshot.forEach((doc) => {
+    //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
+    //     });
+    //   });
   }
-=======
-  //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-  //     const container = document.getElementById("contenido");
-  //     container.innerHTML = "";
-
-  //     querySnapshot.forEach((doc) => {
-  //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
-  //     });
-  //   });
-}
->>>>>>> upstrem/master
 
 
 }
