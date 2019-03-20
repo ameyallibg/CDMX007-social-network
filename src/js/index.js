@@ -256,6 +256,7 @@ window.controlador = {
         photo: photoUser,
         autor: nameUser,
         mensaje: comentario,
+        like: 0
         // const comentario: comentario,
 
         // })
@@ -284,54 +285,52 @@ window.controlador = {
         muro.innerHTML += `
         <tr  >
           <td>${doc.data().autor}</td>
-          <td>${doc.data().mensaje}</td>
+          <img src="${doc.data().photo}" class="avatar">
+          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
           <td><button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button></td> 
-          <td><button id= "${doc.id}"  class="tablasEditar" >Editar</button></td>
+          <td><button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button></td> 
         </tr>
         `
       });
-      const tablas = document.getElementsByClassName('tablasEliminar')
+      const tablas= document.getElementsByClassName("tablas");
+     
+      
       for (let i = 0; i < tablas.length; i++) {
-        tablas[i].addEventListener('click', () => {
-          let id = tablas[i].id
+        // let liker = parseInt(tablas[i].value)
+        tablas[i].addEventListener("click", (e) => {
+          let id = tablas[i].id;
+          
+          let likeit = parseInt(e.target.dataset.like)
+          likeit ++;
+          console.log(likeit)
+          
+          var sumar = db.collection("publicaciones").doc(id);
+          return sumar.update({
+            like: likeit,
+          }).then(function() {
+            console.log("Document successfully updated!");
+        })
+        .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+        
+        })
+        
+        
+      }  
+
+      const tablasEliminar = document.getElementsByClassName('tablasEliminar')
+      for (let i = 0; i < tablasEliminar.length; i++) {
+        tablasEliminar[i].addEventListener('click', () => {
+          let id = tablasEliminar[i].id
           db.collection("publicaciones").doc(id).delete().then(function () {
             console.log("Document successfully deleted!");
           }).catch(function (error) {
             console.error("Error removing document: ", error);
           });
-
-
-
-
         })
       }
-
-      const tabla = document.getElementsByClassName('tablasEditar')
-      for (let i = 0; i < tablas.length; i++) {
-        tabla[i].addEventListener('click', () => {
-          let id = tabla[i].id
-          // Add a new document in collection "cities"
-          var editar = db.collection("publicaciones").doc(id);
-
-          // Set the "capital" field of the city 'DC'
-          return editar.update({
-              mensaje: ""
-            })
-            .then(function () {
-              console.log("Document successfully updated!");
-            })
-            .catch(function (error) {
-              // The document probably doesn't exist.
-              console.error("Error updating document: ", error);
-            });
-
-
-
-
-        })
-      }
-
-
     });
 
 
