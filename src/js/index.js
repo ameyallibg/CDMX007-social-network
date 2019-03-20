@@ -18,16 +18,25 @@ window.controlador = {
             
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
-
+          var user = firebase.auth().currentUser;
+          
+          user.updateProfile({
+            displayName: name,
+            photoURL: "assets/img/astro.png"
+          }).then(function() {
+            // Update successful.
+          }).catch(function(error) {
+            // An error happened.
+          });
           verification()
-        }).then(function() {
-          let user = firebase.auth().currentUser;
-          firebase.firestore().collection('posts').doc(user.uid).set({
-              id: user.uid,
-              name: name,
-              email: user.email,
-              photo: user.photoURL,
-              })
+        // }).then(function() {
+        //   let user = firebase.auth().currentUser;
+          // firebase.firestore().collection('posts').doc(user.uid).set({
+          //     id: user.uid,
+          //     name: name,
+          //     email: user.email,
+          //     photo: user.photoURL,
+          //     })
         .catch(function (error) {
           var errorMessage = error.message;
           alert(errorMessage);
@@ -253,10 +262,16 @@ window.controlador = {
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
       var comentario = document.getElementById('comentario').value; 
-      firebase.firestore().collection('publicaciones').add({
+       let likes = 0
+      if (comentario == "") {
+        alert("debes agregar un comentario")
+        
+      
+      }else {firebase.firestore().collection('publicaciones').add({
         photo: photoUser,
         autor : nameUser,
         mensaje : comentario,
+        like: 0,
       // const comentario: comentario,
       
   // })
@@ -270,37 +285,84 @@ window.controlador = {
   //     console.error("Error adding document: ", error);
   // });
   })
-      
+
+}  
 })
+
+
+
+
   
   //leer info
   var muro = document.getElementById('muro');
   db.collection("publicaciones").onSnapshot((querySnapshot) => {
-     muro.innerHTML=''; 
+      muro.innerHTML = '';
       querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data().autor}`);
-          muro.innerHTML += `
-          <tr>
+        
+        muro.innerHTML += `
+        <tr  >
           <td>${doc.data().autor}</td>
-          
-          <td>${doc.data().mensaje}</td>
+          <img src="${doc.data().photo}" class="avatar">
+          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <td><button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button></td> 
+          <td><button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button></td> 
         </tr>
         `
       });
-  });
+      const tablas= document.getElementsByClassName("tablas");
+     
+      
+      for (let i = 0; i < tablas.length; i++) {
+        // let liker = parseInt(tablas[i].value)
+        tablas[i].addEventListener("click", (e) => {
+          let id = tablas[i].id;
+          
+          let likeit = parseInt(e.target.dataset.like)
+          likeit ++;
+          console.log(likeit)
+          
+          var sumar = db.collection("publicaciones").doc(id);
+          return sumar.update({
+            like: likeit,
+          }).then(function() {
+            console.log("Document successfully updated!");
+        })
+        .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+        
+        })
+        
+        
+      }  
 
-
-  const emailUser = document.getElementById("emailUser");
-    const emailUserNew = emailUser.textContent
-
-    db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-      const container = document.getElementById("contenido");
-      container.innerHTML = "";
-
-      querySnapshot.forEach((doc) => {
-        container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
-      });
+      const tablasEliminar = document.getElementsByClassName('tablasEliminar')
+      for (let i = 0; i < tablasEliminar.length; i++) {
+        tablasEliminar[i].addEventListener('click', () => {
+          let id = tablaEliminars[i].id
+          db.collection("publicaciones").doc(id).delete().then(function () {
+            console.log("Document successfully deleted!");
+          }).catch(function (error) {
+            console.error("Error removing document: ", error);
+          });
+        })
+      }
     });
+
+
+
+  // const emailUser = document.getElementById("emailUser");
+  //   const emailUserNew = emailUser.textContent
+
+  //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+  //     const container = document.getElementById("contenido");
+  //     container.innerHTML = "";
+
+  //     querySnapshot.forEach((doc) => {
+  //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
+  //     });
+  //   });
 }
 
 
