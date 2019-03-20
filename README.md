@@ -36,29 +36,28 @@ La lógica del proyecto esta implementado completamente:
 
 ### Definición del producto
 
-¿Cómo descubrimos las necesidades de los usuarios?
+- ¿Cómo descubrimos las necesidades de los usuarios?
+Compartimos instalaciones con otro Bootcamp y haciendo sondeo nos percatamos que entre
+laboratoria e ironhack no hay comunicación directa, eso nos llevó a la hipótesis de que la
+falta de comunicación interbootcamp era por que no existe una comunidad entre estos.
 
-¿Cómo llegamos a la definición final del producto?
 
-Imágenes, cuestionarios 
- 
+- ¿Cómo llegamos a la definición final del producto?
+Geek it (geekealo) es una expresión que viene de Geek, un término que se utiliza para referirse a quien se fascina por la tecnología y la informática. Geek It es una red social interbootcamp.
 
-* Cuáles son los elementos básicos que tiene una red social
-perfil del usuario, un feed o muro público, likes
-* Quiénes son los principales usuarios de producto
-Desarrollador@s Web que sean estudiantes de bootcamps Ciudad México
-* Cómo descubriste las necesidades de los usuarios
-Nos percatamos que no habían muchos Bootcamps en la Ciudad y que de esos pocos no había un canal de comunicación directa.
-* Qué problema resuelve el producto para estos usuarios
-Falta de comunicación y comunidad entre bootcamps de la ciudad
-* Cuáles son los objetivos de estos usuarios en relación con el producto
-Conocer más gente que se encuentre en aprendisaje intensivo y recibir recomendación o ayuda en proyectos y dudas.
-* Cuáles son las principales funcionalidades del producto y cuál es su prioridad
-Crear comunidad en área metropolitana.
-* Cómo verificaste que el producto les está resolviendo sus problemas
-(Falta testeo de prototipo)
-* Cómo te asegurarás que estos usuarios usen este producto
-(Falta testeo de alta fidelidad)
+- Imágenes, cuestionarios.
+
+![Encuesta](http://img.fenixzone.net/i/auR5A4I.png)
+![Encuesta2](http://img.fenixzone.net/i/u85jaBc.png)
+  
+
+* Se conforma por un perfil del usuario, un feed o muro público y likes.
+* Principales usuarios: desarrollador@s web estudiantes de bootcamps en Ciudad México.
+* Problema que resuelve para estos usuarios, falta de comunicación y comunidad entre bootcamps de la ciudad.
+* Conocer más gente que se encuentre en aprendisaje intensivo y recibir recomendación o ayuda en proyectos y dudas.
+* Testeo con usuarios
+
+-----Fotos de personas usando geek it------
 
 
 ### Historias de usuario
@@ -131,7 +130,7 @@ La interfaz debe permitir lo siguiente:
 
 * Perspectiva de interfaz:
 
-  ![Muro](http://img.fenixzone.net/i/AP3y0qg.png)
+  -----pantallazo de muro----
 
 #### Otras consideraciones
 
@@ -195,3 +194,8 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 
 ***
 ### Conclusiones
+
+### Créditos
+- [Amellaly Brito](https://github.com/ameyallibg)
+- [Erandi Cuervo](https://github.com/ErandiCVC13)
+- [Viviana Navarro](https://github.com/Vivianavarro?tab=repositories)
