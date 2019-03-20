@@ -275,7 +275,7 @@ footer{
     background-repeat: no-repeat;
     width: 9%;
     height: 2em;
-    margin-left: 48%;
+    margin-left: 4%;
     padding-top: 1em;
     background-image: url(../assets/img/like.png);
 }
@@ -311,4 +311,15 @@ footer{
  }
  .style-publicar:hover{
      opacity:.8;
+ }
+ .avatar-editar{
+    margin-left: 32%;
+    background-image: url(../assets/img/edit.png);
+    background-color: #343a40;
+    border-style: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 9%;
+    height: 2em;
+
  }
