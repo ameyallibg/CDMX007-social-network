@@ -231,6 +231,7 @@ window.controlador = {
       const nameUser = user.displayName;
       const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
+
       if (comentario == "") {
         alert("debes agregar un comentario")
 
@@ -269,6 +270,7 @@ window.controlador = {
           <p class="avatar-autor">${doc.data().autor}</p>
           <button id= "${doc.id}"  class="tablasEditar avatar-editar" ><u></u></button>
           <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
+          <p class="number-likes">${doc.data().like}</p>
           
           </div>
           
@@ -286,7 +288,7 @@ window.controlador = {
             <p class="avatar-autor">${doc.data().autor}</p>
             
             <button id= "${doc.id}"  class="tablas avatar-like avatar-like-editar" data-like=${doc.data().like} ></button>
-            
+            <p class="number-likes" >${doc.data().like}</p>
             </div>
             
             <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
@@ -308,6 +310,7 @@ window.controlador = {
           let likeit = parseInt(e.target.dataset.like)
           likeit++;
           console.log(likeit)
+
 
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
@@ -351,18 +354,13 @@ window.controlador = {
           if (confirm("¿Estas seguro de editar este mensaje?") == true) {
 
             let id = tablasEditar[i].id
-
-            document.getElementById("txt").disabled = false;
-            
-
+            const habilitaTtx = document.getElementById("txt").value;
             const guardar = document.getElementById("guardar")
             guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `
 
 
 
             guardar.addEventListener("click", () => {
-
-              const habilitaTtx = document.getElementById("txt").value;
 
               const msjEditado = habilitaTtx;
               var publiEditada = db.collection("publicaciones").doc(id);
