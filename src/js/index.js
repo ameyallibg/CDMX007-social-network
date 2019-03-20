@@ -8,8 +8,14 @@ window.controlador = {
     const buttonSignIn = document.getElementById("button-sign-in-new");
     const modalWarning = document.getElementById("modal-warning");
     const modalInvalidEmail = document.getElementById("modal-invalid-email");
-    const nombre = document.getElementById("name")
+    const errorRegistro = document.getElementById("error-reg");
+    const nombre = document.getElementById("name");
+    const botonCerrar = document.getElementById("button-comeback")
     var db = firebase.firestore();
+    botonCerrar.addEventListener("click",()=>{
+      window.location.hash = '#/';
+
+    })
 
     buttonSignIn.addEventListener("click", () => {
       let signInValue = signIn.value;
@@ -28,40 +34,35 @@ window.controlador = {
 
             // Update successful.
           }).catch(function (error) {
+            console.log(error.message)
             // An error happened.
           });
           verification()
-            // }).then(function() {
-            //   let user = firebase.auth().currentUser;
-            // firebase.firestore().collection('posts').doc(user.uid).set({
-            //     id: user.uid,
-            //     name: name,
-            //     email: user.email,
-            //     photo: user.photoURL,
-            //     })
+
             .catch(function (error) {
               var errorMessage = error.message;
               alert(errorMessage);
               modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
                                           <p> ${errorMessage} </p></div>`;
             });
-        });
+        }).catch(function(error){
+          var errorMessage = error.message;
+              errorRegistro.innerHTML= ` <div class="alert alert-warning" role="alert">
+              <p> ${errorMessage} </p></div>`;
+
+        })
     })
 
     const verification = () => {
       var user = firebase.auth().currentUser;
 
       user.sendEmailVerification().then(function () {
-        // Email sent.
         modalWarning.innerHTML = ` <div class="alert alert-warning" role="alert">
         <p>Se te ha enviado un correo de verificacion de Usuario</p></div>`;
-
-
       }).then(function () {
         setTimeout(function () {
           window.location.hash = '#/';
         }, 3000);
-
       }).catch(function (error) {
         alert("error");
       });
@@ -75,8 +76,6 @@ window.controlador = {
         db.collection("posts").add({
             name: addForm.elements.userId.value,
             email: addForm.elements.email.value,
-            mujer: addForm.elements.mujer.value,
-            hombre: addForm.elements.hombre.value,
 
           })
           .then((docRef) => {
@@ -128,18 +127,14 @@ window.controlador = {
       const provider = new firebase.auth.FacebookAuthProvider();
 
       firebase.auth().signInWithRedirect(provider).then(function (result) {}).catch(function (error) {
-        // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         alert(errorCode);
         alert(errorMessage);
-        // The email of the user's account used.
         var email = error.email;
         alert(email);
-        // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
         alert(credential)
-        // ...
       });
     });
 
@@ -147,24 +142,15 @@ window.controlador = {
       var provider = new firebase.auth.GithubAuthProvider();
 
       firebase.auth().signInWithRedirect(provider).then(function (result) {
-        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // ...
       }).catch(function (error) {
-        // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
-        // The email of the user's account used.
         var email = error.email;
         console.log(email);
-        // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
         console.log(credential)
-        // ...
       });
     });
 
@@ -174,23 +160,20 @@ window.controlador = {
 
       firebase.auth().signInWithRedirect(googleProvider)
         .catch(function (error) {
-          // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           alert(errorCode);
           alert(errorMessage);
-          // The email of the user's account used.
           var email = error.email;
           alert(email);
-          // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
           alert(credential)
-          // ...
         });
 
     })
     const state = () => {
       firebase.auth().onAuthStateChanged(function (user) {
+
         if (user) {
           showUser(user)
         }
@@ -232,30 +215,14 @@ window.controlador = {
     }
   },
 
-  muro: () => {
-    var db = firebase.firestore();
-    const emailUser = document.getElementById("emailUser");
-    const emailUserNew = emailUser.textContent
 
-    db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-      const container = document.getElementById("contenido");
-      container.innerHTML = "";
-
-      querySnapshot.forEach((doc) => {
-        container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
-      });
-    });
-  },
 
 
   posteos: () => {
 
     var db = firebase.firestore();
-
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
-
-
     posteo.addEventListener("click", () => {
       // var nombre = document.getElementById('nombre').value;
       const user = firebase.auth().currentUser;
@@ -264,7 +231,7 @@ window.controlador = {
       const nameUser = user.displayName;
       const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
-      
+
       if (comentario == "") {
         alert("debes agregar un comentario")
 
@@ -276,20 +243,7 @@ window.controlador = {
           mensaje: comentario,
           email: emailUser,
           like: 0,
-          // const comentario: comentario,
-
-          // })
-          // .then(function (docRef) {
-          //     console.log("Document written with ID: ", docRef.id);
-          //     document.getElementById('nombre').value ="";
-          //     document.getElementById('comentario').value="";
-
-          // })
-          // .catch(function (error) {
-          //     console.error("Error adding document: ", error);
-          // });
         })
-
       }
     })
 
@@ -299,8 +253,6 @@ window.controlador = {
 
     //leer info
     var muro = document.getElementById('muro');
-
-
     db.collection("publicaciones").onSnapshot((querySnapshot) => {
       muro.innerHTML = '';
       querySnapshot.forEach((doc) => {
@@ -350,14 +302,11 @@ window.controlador = {
 
 
       const tablas = document.getElementsByClassName("tablas");
-
-
       for (let i = 0; i < tablas.length; i++) {
         // let liker = parseInt(tablas[i].value)
         tablas[i].addEventListener("click", (e) => {
 
           let id = tablas[i].id;
-
           let likeit = parseInt(e.target.dataset.like)
           likeit++;
           console.log(likeit)
@@ -367,12 +316,9 @@ window.controlador = {
           return sumar.update({
               like: likeit,
             }).then(function () {
-              
-
               console.log("Document successfully updated!");
             })
             .catch(function (error) {
-              // The document probably doesn't exist.
               console.error("Error updating document: ", error);
             });
 
@@ -408,15 +354,14 @@ window.controlador = {
           if (confirm("¿Estas seguro de editar este mensaje?") == true) {
 
             let id = tablasEditar[i].id
-            // document.getElementById("txt").disabled = false;
             const habilitaTtx = document.getElementById("txt").value;
             const guardar = document.getElementById("guardar")
             guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `
-            
-            
+
+
 
             guardar.addEventListener("click", () => {
-              
+
               const msjEditado = habilitaTtx;
               var publiEditada = db.collection("publicaciones").doc(id);
               console.log(msjEditado);
@@ -437,27 +382,6 @@ window.controlador = {
           }
         })
       }
-
-
-
-
-
     });
-
-
-
-    // const emailUser = document.getElementById("emailUser");
-    //   const emailUserNew = emailUser.textContent
-
-    //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-    //     const container = document.getElementById("contenido");
-    //     container.innerHTML = "";
-
-    //     querySnapshot.forEach((doc) => {
-    //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
-    //     });
-    //   });
   }
-
-
 }
