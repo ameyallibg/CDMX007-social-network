@@ -326,3 +326,12 @@ footer{
  .avatar-like-editar{
     margin-left: 35%;
  }
+ .number-likes{
+    margin-left: 73%;
+    padding: 0px;
+    margin-top: px;
+    position: relative;
+    margin-top: -2em;
+    margin-bottom: .5em;
+    font-size: .9em;
+ }
