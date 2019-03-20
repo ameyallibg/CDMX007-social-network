@@ -24,7 +24,7 @@ window.controlador = {
             displayName: name,
 
             photoURL: "assets/img/alien.png"
-          }).then(function() {
+          }).then(function () {
 
             // Update successful.
           }).catch(function (error) {
@@ -274,7 +274,7 @@ window.controlador = {
           photo: photoUser,
           autor: nameUser,
           mensaje: comentario,
-          email:emailUser,
+          email: emailUser,
           like: 0,
           // const comentario: comentario,
 
@@ -321,9 +321,9 @@ window.controlador = {
           
           </div>
           
-          <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <textarea class="textarea"id= "txt" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
           <button id= "${doc.id}"  class="tablasEliminar avatar-eliminar" ><u>Eliminar</u></button> 
-          
+          <p id = "guardar"></p>
         </div>
         `
         } else {
@@ -387,7 +387,7 @@ window.controlador = {
             let id = tablasEliminar[i].id
 
             db.collection("publicaciones").doc(id).delete().then(function () {
-              
+
               console.log("Document successfully deleted!");
             }).catch(function (error) {
               console.error("Error removing document: ", error);
@@ -404,24 +404,31 @@ window.controlador = {
           if (confirm("¿Estas seguro de editar este mensaje?") == true) {
 
             let id = tablasEditar[i].id
+            // document.getElementById("txt").disabled = false;
+            const habilitaTtx = document.getElementById("txt").value;
+            const guardar = document.getElementById("guardar")
+            guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `
             
-            var publiEditada = db.collection("publicaciones").doc(id);
+            
 
-           const habilitaTtx= document.getElementById("txt").disabled= false;
-            const msjEditado = habilitaTtx.value;
+            guardar.addEventListener("click", () => {
+              
+              const msjEditado = habilitaTtx;
+              var publiEditada = db.collection("publicaciones").doc(id);
+              console.log(msjEditado);
+              return publiEditada.update({
+                  mensaje: msjEditado
+                })
+                .then(function () {
+                  console.log("Document successfully updated!");
+                  document.getElementById("txt").disabled = true;
+                })
+                .catch(function (error) {
+                  // The document probably doesn't exist.
+                  console.error("Error updating document: ", error);
+                });
+            })
 
-
-            return publiEditada.update({
-                mensaje: msjEditado
-              })
-              .then(function () {
-                console.log("Document successfully updated!");
-                document.getElementById("txt").disabled= true;
-              })
-              .catch(function (error) {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-              });
 
           }
         })
