@@ -20,6 +20,8 @@ html,body{
 input::placeholder { 
     color: white; 
 }
+
+
 .headerIndex{
     padding-top: 0%;
     padding-left: 0%;

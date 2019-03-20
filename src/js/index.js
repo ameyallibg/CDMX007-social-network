@@ -15,35 +15,37 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
-            
+
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
           var user = firebase.auth().currentUser;
-          
+
           user.updateProfile({
             displayName: name,
+
             photoURL: "assets/img/alien.png"
           }).then(function() {
+
             // Update successful.
-          }).catch(function(error) {
+          }).catch(function (error) {
             // An error happened.
           });
           verification()
-        // }).then(function() {
-        //   let user = firebase.auth().currentUser;
-          // firebase.firestore().collection('posts').doc(user.uid).set({
-          //     id: user.uid,
-          //     name: name,
-          //     email: user.email,
-          //     photo: user.photoURL,
-          //     })
-        .catch(function (error) {
-          var errorMessage = error.message;
-          alert(errorMessage);
-          modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
+            // }).then(function() {
+            //   let user = firebase.auth().currentUser;
+            // firebase.firestore().collection('posts').doc(user.uid).set({
+            //     id: user.uid,
+            //     name: name,
+            //     email: user.email,
+            //     photo: user.photoURL,
+            //     })
+            .catch(function (error) {
+              var errorMessage = error.message;
+              alert(errorMessage);
+              modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
                                           <p> ${errorMessage} </p></div>`;
+            });
         });
-      });
     })
 
     const verification = () => {
@@ -58,18 +60,18 @@ window.controlador = {
       }).then(function () {
         setTimeout(function () {
           window.location.hash = '#/';
-      }, 3000);
-  
-              }).catch(function (error) {
+        }, 3000);
+
+      }).catch(function (error) {
         alert("error");
       });
     }
 
     if (window.location.href.includes("registro")) {
       buttonSignIn.addEventListener('click', (event) => {
-        
+
         const addForm = document.forms.namedItem("add-form");
-        
+
         db.collection("posts").add({
             name: addForm.elements.userId.value,
             email: addForm.elements.email.value,
@@ -119,26 +121,25 @@ window.controlador = {
                                 <p class="margin-warning">${errorCode}</p></div>`;
 
           }
-      });
+        });
     });
 
     buttonSignInFacebook.addEventListener("click", () => {
       const provider = new firebase.auth.FacebookAuthProvider();
 
-      firebase.auth().signInWithRedirect(provider).then(function (result) {
-        }).catch(function (error) {
-         // Handle Errors here.
-         var errorCode = error.code;
-         var errorMessage = error.message;
-         alert(errorCode);
-         alert(errorMessage);
-         // The email of the user's account used.
-         var email = error.email;
-         alert(email);
-         // The firebase.auth.AuthCredential type that was used.
-         var credential = error.credential;
-         alert(credential)
-         // ...
+      firebase.auth().signInWithRedirect(provider).then(function (result) {}).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorCode);
+        alert(errorMessage);
+        // The email of the user's account used.
+        var email = error.email;
+        alert(email);
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        alert(credential)
+        // ...
       });
     });
 
@@ -167,24 +168,24 @@ window.controlador = {
       });
     });
 
-    
+
     signinGoogle.addEventListener("click", () => {
       var googleProvider = new firebase.auth.GoogleAuthProvider()
-      
+
       firebase.auth().signInWithRedirect(googleProvider)
         .catch(function (error) {
-           // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert(errorCode);
-        alert(errorMessage);
-        // The email of the user's account used.
-        var email = error.email;
-        alert(email);
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        alert(credential)
-        // ...
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorCode);
+          alert(errorMessage);
+          // The email of the user's account used.
+          var email = error.email;
+          alert(email);
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          alert(credential)
+          // ...
         });
 
     })
@@ -192,7 +193,7 @@ window.controlador = {
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           showUser(user)
-          }
+        }
       });
     }
 
@@ -212,7 +213,7 @@ window.controlador = {
             firebase.auth().signOut()
               .then(function () {
                 window.location.hash = '#/'
-                
+
               })
               .catch(function (error) {
                 console.log(error);
@@ -247,60 +248,75 @@ window.controlador = {
   },
 
 
-  posteos:() => {
- 
-  var db = firebase.firestore();
-  
-  //Agregar comentarios
-  var posteo = document.getElementById("publicar");
-      
-     
-  posteo.addEventListener("click", ()=>{
-    // var nombre = document.getElementById('nombre').value;
-    const user = firebase.auth().currentUser; 
+  posteos: () => {
+
+    var db = firebase.firestore();
+
+    //Agregar comentarios
+    var posteo = document.getElementById("publicar");
+
+
+    posteo.addEventListener("click", () => {
+      // var nombre = document.getElementById('nombre').value;
+      const user = firebase.auth().currentUser;
       // db.collection("usuarios").add({      
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
-      var comentario = document.getElementById('comentario').value; 
-       let likes = 0
+      const emailUser = user.email;
+      var comentario = document.getElementById('comentario').value;
+      let likes = 0
       if (comentario == "") {
         alert("debes agregar un comentario")
-        
-      
-      }else {firebase.firestore().collection('publicaciones').add({
-        photo: photoUser,
-        autor : nameUser,
-        mensaje : comentario,
-        like: 0,
-      // const comentario: comentario,
-      
-  // })
-  // .then(function (docRef) {
-  //     console.log("Document written with ID: ", docRef.id);
-  //     document.getElementById('nombre').value ="";
-  //     document.getElementById('comentario').value="";
-      
-  // })
-  // .catch(function (error) {
-  //     console.error("Error adding document: ", error);
-  // });
-  })
-
-}  
-})
 
 
+      } else {
+        firebase.firestore().collection('publicaciones').add({
+          photo: photoUser,
+          autor: nameUser,
+          mensaje: comentario,
+          email:emailUser,
+          like: 0,
+          // const comentario: comentario,
+
+          // })
+          // .then(function (docRef) {
+          //     console.log("Document written with ID: ", docRef.id);
+          //     document.getElementById('nombre').value ="";
+          //     document.getElementById('comentario').value="";
+
+          // })
+          // .catch(function (error) {
+          //     console.error("Error adding document: ", error);
+          // });
+        })
+
+      }
+    })
 
 
-  
-  //leer info
-  var muro = document.getElementById('muro');
-  db.collection("publicaciones").onSnapshot((querySnapshot) => {
+
+
+
+    //leer info
+    var muro = document.getElementById('muro');
+
+
+    db.collection("publicaciones").onSnapshot((querySnapshot) => {
       muro.innerHTML = '';
       querySnapshot.forEach((doc) => {
-        
-        muro.innerHTML += `
+
+        const user = firebase.auth().currentUser;
+
+        const mailUser = user.email;
+
+        console.log(user.email)
+
+        console.log(doc)
+
+        if (mailUser === doc.data().email) {
+          muro.innerHTML += `
         <div class="container-pub">
+
         <div class="alinear">
           <img src="${doc.data().photo}" class="avatar avatar-img">
           <p class="avatar-autor">${doc.data().autor}</p>
@@ -314,62 +330,117 @@ window.controlador = {
           
         </div>
         `
+        } else {
+          muro.innerHTML += `
+          <div class="container-pub">
+            <p>${doc.data().autor}</p>
+            <img src="${doc.data().photo}" class="avatar">
+            <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+            
+            <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+          </div>
+          `
+        }
+
       });
-      const tablas= document.getElementsByClassName("tablas");
-     
-      
+
+
+      const tablas = document.getElementsByClassName("tablas");
+
+
       for (let i = 0; i < tablas.length; i++) {
         // let liker = parseInt(tablas[i].value)
         tablas[i].addEventListener("click", (e) => {
+
           let id = tablas[i].id;
-          
+
           let likeit = parseInt(e.target.dataset.like)
-          likeit ++;
+          likeit++;
           console.log(likeit)
-          
+
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
-            like: likeit,
-          }).then(function() {
-            console.log("Document successfully updated!");
+              like: likeit,
+            }).then(function () {
+              console.log("Document successfully updated!");
+            })
+            .catch(function (error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
+
         })
-        .catch(function(error) {
-            // The document probably doesn't exist.
-            console.error("Error updating document: ", error);
-        });
-        
-        })
-        
-        
-      }  
+
+
+      }
 
       const tablasEliminar = document.getElementsByClassName('tablasEliminar')
       for (let i = 0; i < tablasEliminar.length; i++) {
+
         tablasEliminar[i].addEventListener('click', () => {
-          let id = tablasEliminar[i].id
-          db.collection("publicaciones").doc(id).delete().then(function () {
-            console.log("Document successfully deleted!");
-          }).catch(function (error) {
-            console.error("Error removing document: ", error);
-          });
+
+          if (confirm("¿Estas seguro de eliminar este mensaje?") == true) {
+
+            let id = tablasEliminar[i].id
+
+            db.collection("publicaciones").doc(id).delete().then(function () {
+              
+              console.log("Document successfully deleted!");
+            }).catch(function (error) {
+              console.error("Error removing document: ", error);
+            });
+          }
+
         })
       }
+
+      const tablasEditar = document.getElementsByClassName('tablasEditar')
+      for (let i = 0; i < tablasEditar.length; i++) {
+
+        tablasEditar[i].addEventListener('click', () => {
+          if (confirm("¿Estas seguro de editar este mensaje?") == true) {
+
+            let id = tablasEditar[i].id
+            
+            var publiEditada = db.collection("publicaciones").doc(id);
+
+            
+            // Set the "capital" field of the city 'DC'
+            return publiEditada.update({
+                mensaje: true
+              })
+              .then(function () {
+                console.log("Document successfully updated!");
+              })
+              .catch(function (error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+              });
+
+          }
+        })
+      }
+
+
+
+
+
     });
 
 
 
-  // const emailUser = document.getElementById("emailUser");
-  //   const emailUserNew = emailUser.textContent
+    // const emailUser = document.getElementById("emailUser");
+    //   const emailUserNew = emailUser.textContent
 
-  //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-  //     const container = document.getElementById("contenido");
-  //     container.innerHTML = "";
+    //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+    //     const container = document.getElementById("contenido");
+    //     container.innerHTML = "";
 
-  //     querySnapshot.forEach((doc) => {
-  //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
-  //     });
-  //   });
-}
+    //     querySnapshot.forEach((doc) => {
+    //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
+    //     });
+    //   });
+  }
 
 
 }
