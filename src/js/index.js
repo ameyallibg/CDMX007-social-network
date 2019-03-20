@@ -22,8 +22,10 @@ window.controlador = {
 
           user.updateProfile({
             displayName: name,
-            photoURL: "assets/img/astro.png"
-          }).then(function () {
+
+            photoURL: "assets/img/alien.png"
+          }).then(function() {
+
             // Update successful.
           }).catch(function (error) {
             // An error happened.
@@ -314,12 +316,18 @@ window.controlador = {
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
         <div class="container-pub">
-          <p>${doc.data().autor}</p>
-          <img src="${doc.data().photo}" class="avatar">
-          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
-          <button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button> 
-          <button id= "${doc.id}"  class="tablasEditar" >Editar</button> 
-          <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+
+        <div class="alinear">
+          <img src="${doc.data().photo}" class="avatar avatar-img">
+          <p class="avatar-autor">${doc.data().autor}</p>
+          
+          <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
+          
+          </div>
+          
+          <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <button id= "${doc.id}"  class="tablasEliminar avatar-eliminar" ><u>Eliminar</u></button> 
+          
         </div>
         `
         } else {
@@ -382,6 +390,7 @@ window.controlador = {
               console.error("Error removing document: ", error);
             });
           }
+
         })
       }
 
