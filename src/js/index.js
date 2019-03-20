@@ -309,10 +309,6 @@ window.controlador = {
 
         const mailUser = user.email;
 
-        console.log(user.email)
-
-        console.log(doc)
-
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
         <div class="container-pub">
@@ -320,7 +316,7 @@ window.controlador = {
         <div class="alinear">
           <img src="${doc.data().photo}" class="avatar avatar-img">
           <p class="avatar-autor">${doc.data().autor}</p>
-          
+          <button id= "${doc.id}"  class="tablasEditar avatar-editar" ><u>Edt</u></button>
           <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
           
           </div>
@@ -333,11 +329,18 @@ window.controlador = {
         } else {
           muro.innerHTML += `
           <div class="container-pub">
-            <p>${doc.data().autor}</p>
-            <img src="${doc.data().photo}" class="avatar">
-            <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+
+          <div class="alinear">
+            <img src="${doc.data().photo}" class="avatar avatar-img">
+            <p class="avatar-autor">${doc.data().autor}</p>
             
-            <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+            <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
+            
+            </div>
+            
+            <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+            
+            
           </div>
           `
         }
@@ -404,13 +407,16 @@ window.controlador = {
             
             var publiEditada = db.collection("publicaciones").doc(id);
 
-            
-            // Set the "capital" field of the city 'DC'
+           const habilitaTtx= document.getElementById("txt").disabled= false;
+            const msjEditado = habilitaTtx.value;
+
+
             return publiEditada.update({
-                mensaje: true
+                mensaje: msjEditado
               })
               .then(function () {
                 console.log("Document successfully updated!");
+                document.getElementById("txt").disabled= true;
               })
               .catch(function (error) {
                 // The document probably doesn't exist.
