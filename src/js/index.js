@@ -18,8 +18,18 @@ window.controlador = {
 
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
-
+          var user = firebase.auth().currentUser;
+          
+          user.updateProfile({
+            displayName: name,
+            photoURL: "assets/img/astro.png"
+          }).then(function() {
+            // Update successful.
+          }).catch(function(error) {
+            // An error happened.
+          });
           verification()
+<<<<<<< HEAD
         }).then(function () {
           let user = firebase.auth().currentUser;
           firebase.firestore().collection('posts').doc(user.uid).set({
@@ -32,6 +42,20 @@ window.controlador = {
               var errorMessage = error.message;
               alert(errorMessage);
               modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
+=======
+        // }).then(function() {
+        //   let user = firebase.auth().currentUser;
+          // firebase.firestore().collection('posts').doc(user.uid).set({
+          //     id: user.uid,
+          //     name: name,
+          //     email: user.email,
+          //     photo: user.photoURL,
+          //     })
+        .catch(function (error) {
+          var errorMessage = error.message;
+          alert(errorMessage);
+          modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
+>>>>>>> upstrem/master
                                           <p> ${errorMessage} </p></div>`;
             });
         });
@@ -251,6 +275,7 @@ window.controlador = {
       // db.collection("usuarios").add({      
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
+<<<<<<< HEAD
       var comentario = document.getElementById('comentario').value;
       firebase.firestore().collection('publicaciones').add({
         photo: photoUser,
@@ -290,6 +315,54 @@ window.controlador = {
           <td><button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button></td> 
           <td><button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button></td> 
         </tr>
+=======
+      var comentario = document.getElementById('comentario').value; 
+       let likes = 0
+      if (comentario == "") {
+        alert("debes agregar un comentario")
+        
+      
+      }else {firebase.firestore().collection('publicaciones').add({
+        photo: photoUser,
+        autor : nameUser,
+        mensaje : comentario,
+        like: 0,
+      // const comentario: comentario,
+      
+  // })
+  // .then(function (docRef) {
+  //     console.log("Document written with ID: ", docRef.id);
+  //     document.getElementById('nombre').value ="";
+  //     document.getElementById('comentario').value="";
+      
+  // })
+  // .catch(function (error) {
+  //     console.error("Error adding document: ", error);
+  // });
+  })
+
+}  
+})
+
+
+
+
+  
+  //leer info
+  var muro = document.getElementById('muro');
+  db.collection("publicaciones").onSnapshot((querySnapshot) => {
+      muro.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+        
+        muro.innerHTML += `
+        <div class="container-pub">
+          <p>${doc.data().autor}</p>
+          <img src="${doc.data().photo}" class="avatar">
+          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button> 
+          <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+        </div>
+>>>>>>> upstrem/master
         `
       });
       const tablas= document.getElementsByClassName("tablas");
@@ -323,7 +396,11 @@ window.controlador = {
       const tablasEliminar = document.getElementsByClassName('tablasEliminar')
       for (let i = 0; i < tablasEliminar.length; i++) {
         tablasEliminar[i].addEventListener('click', () => {
+<<<<<<< HEAD
           let id = tablasEliminar[i].id
+=======
+          let id = tablaEliminars[i].id
+>>>>>>> upstrem/master
           db.collection("publicaciones").doc(id).delete().then(function () {
             console.log("Document successfully deleted!");
           }).catch(function (error) {
@@ -334,18 +411,32 @@ window.controlador = {
     });
 
 
+<<<<<<< HEAD
     const emailUser = document.getElementById("emailUser");
     const emailUserNew = emailUser.textContent
+=======
+>>>>>>> upstrem/master
 
-    db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-      const container = document.getElementById("contenido");
-      container.innerHTML = "";
+  // const emailUser = document.getElementById("emailUser");
+  //   const emailUserNew = emailUser.textContent
 
+<<<<<<< HEAD
       querySnapshot.forEach((doc) => {
         container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
       });
     });
   }
+=======
+  //   db.collection("posts").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+  //     const container = document.getElementById("contenido");
+  //     container.innerHTML = "";
+
+  //     querySnapshot.forEach((doc) => {
+  //       container.innerHTML += `user: ${doc.data().userId} | time: ${doc.data().email} | ${doc.data().mujer}</br>`;
+  //     });
+  //   });
+}
+>>>>>>> upstrem/master
 
 
 }

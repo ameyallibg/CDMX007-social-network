@@ -3,31 +3,63 @@ html,body{
     color: white;
  
  }
+#coverphoto{
+    width: 80%;
+    opacity: 0.8;
+    border-radius: 1%;
+    
+}
+
 .login{
     width: 100%;
     padding-left: 6%;
     padding-right: 6%;
-    padding-top: 20%;
+    padding-top: 0%;
     color: white;
 }
 input::placeholder { 
     color: white; 
 }
 .headerIndex{
-    padding-top: 4%;
-    padding-left: 5%;
-    color: #7fff00;
+    padding-top: 0%;
+    padding-left: 0%;
+    color:#2E2E2E;
 }
-header h1{
+
+.titleWall{
     margin:0px;
-    font-size:9vw;
+    font-size:30px;
+    padding: 35px;
+    position: static;
+    color: #7fff00;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    text-align: center;
+}
+
+ h1{
+    margin:0px;
+    font-size:50px;
+    padding: 15px;
+    position: static;
+    color: #7fff00;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    text-align: center;
+}
+
+
+#blockBar{
+    background-color:#2E2E2E;
+    position: fixed;
+    display: block;
+    width: 100%;
+    padding: 2px 15px 18px 0px;
+    top: 0px;
 
 }
 
- 
- .nav-item {
-    padding: 5px 25px;
-    font-size: 22px;
+.nav-item {
+    padding: 5px 0px 5px 0px;
+    font-size: 15px;
  }
  
  #areaPost {
@@ -35,7 +67,7 @@ header h1{
     height: 100px;
     color: white;
     text-align: left;
-    background-color: rgb(88, 88, 88);
+    background-color:black;
     position: relative;
     left: 26px;
     padding: 5px;
@@ -46,12 +78,8 @@ header h1{
     font-size: 18px;
  }
  
- #blockbar {
-    padding: 5px;
  
- }
- 
- a.nav-item {
+a.nav-item {
     position: relative;
     bottom: -8px;
     color: white;
@@ -87,9 +115,6 @@ textarea{
     color: white;
     text-align: left;
     background-color: #2e2e2e;
- 
- 
- 
  }
  
  
@@ -155,11 +180,10 @@ input:focus{
 }
 
 button img {
-    
     left: 60px;
 }
 
-h1{
+header{
     text-align: center;
     color:chartreuse;
     margin-top: 1rem;
@@ -174,15 +198,18 @@ h1{
 }
 p{
     padding-top:1em;
-    margin: 0px;
+    margin: -12px;
+    text-align: center;
 }
 
- footer {
+footer{
     
     background-color: black;
     width: 100%;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
+    color: grey;
+    margin: 20px 0px 0px 0px;
  }
 
  .modal-background{
@@ -200,7 +227,6 @@ p{
  }
  .select-class{
     border-radius: 4px;
-    /* background-color: chartreuse; */
     width: 60%;
     padding-left: 2%;
  }
@@ -221,4 +247,10 @@ p{
    width:45px; 
    height:45px;
    border-radius: 50%;
+ }
+ .container-pub{
+    background-color: #343A40;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    text-align: center;
  }
