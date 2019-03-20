@@ -22,7 +22,7 @@ window.controlador = {
           
           user.updateProfile({
             displayName: name,
-            photoURL: "assets/img/astro.png"
+            photoURL: "assets/img/alien.png"
           }).then(function() {
             // Update successful.
           }).catch(function(error) {
@@ -301,11 +301,17 @@ window.controlador = {
         
         muro.innerHTML += `
         <div class="container-pub">
-          <p>${doc.data().autor}</p>
-          <img src="${doc.data().photo}" class="avatar">
-          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
-          <button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button> 
-          <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
+        <div class="alinear">
+          <img src="${doc.data().photo}" class="avatar avatar-img">
+          <p class="avatar-autor">${doc.data().autor}</p>
+          
+          <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
+          
+          </div>
+          
+          <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <button id= "${doc.id}"  class="tablasEliminar avatar-eliminar" ><u>Eliminar</u></button> 
+          
         </div>
         `
       });
@@ -340,7 +346,7 @@ window.controlador = {
       const tablasEliminar = document.getElementsByClassName('tablasEliminar')
       for (let i = 0; i < tablasEliminar.length; i++) {
         tablasEliminar[i].addEventListener('click', () => {
-          let id = tablaEliminars[i].id
+          let id = tablasEliminar[i].id
           db.collection("publicaciones").doc(id).delete().then(function () {
             console.log("Document successfully deleted!");
           }).catch(function (error) {
