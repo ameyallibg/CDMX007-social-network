@@ -270,7 +270,7 @@ window.controlador = {
           <p class="avatar-autor">${doc.data().autor}</p>
           <button id= "${doc.id}"  class="tablasEditar avatar-editar" ><u></u></button>
           <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
-          <p class="number-likes">${doc.data().like}</p>
+          
           
           </div>
           
