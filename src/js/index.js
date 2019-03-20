@@ -264,7 +264,7 @@ window.controlador = {
       const nameUser = user.displayName;
       const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
-      let likes = 0
+      
       if (comentario == "") {
         alert("debes agregar un comentario")
 
@@ -318,6 +318,7 @@ window.controlador = {
           <p class="avatar-autor">${doc.data().autor}</p>
           <button id= "${doc.id}"  class="tablasEditar avatar-editar" ><u></u></button>
           <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
+          <p class="number-likes">${doc.data().like}</p>
           
           </div>
           
@@ -335,7 +336,7 @@ window.controlador = {
             <p class="avatar-autor">${doc.data().autor}</p>
             
             <button id= "${doc.id}"  class="tablas avatar-like avatar-like-editar" data-like=${doc.data().like} ></button>
-            
+            <p class="number-likes" >${doc.data().like}</p>
             </div>
             
             <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
@@ -361,10 +362,13 @@ window.controlador = {
           likeit++;
           console.log(likeit)
 
+
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
               like: likeit,
             }).then(function () {
+              
+
               console.log("Document successfully updated!");
             })
             .catch(function (error) {
