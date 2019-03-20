@@ -1,9 +1,8 @@
 
 ## Introducción
 
-Geek It es una red social dirigida a estudiantes de bootcamps en la Ciudad de México, al 
-realizar una encuesta analizamos que los integrantes de bootcamps en desarrollo web a pesar de contar con grupos 
-especificos para compartir información o eventos en otras redes sociales, no contaban con un canal local y específico, relacionado con gente que estuviera aprendiendo a su mismo ritmo pero en diferentes bootcamps.
+**Geek** It es una red social dirigida a estudiantes de bootcamps en la Ciudad de México, al 
+realizar una encuesta analizamos que los integrantes de bootcamps en desarrollo web a pesar de contar con grupos especificos para compartir información o eventos en otras redes sociales, no contaban con un canal local y específico, relacionado con gente que estuviera aprendiendo a su mismo ritmo pero en diferentes bootcamps.
 
 * Bedu
 * Ironhack 
@@ -13,7 +12,7 @@ especificos para compartir información o eventos en otras redes sociales, no co
 * Muktek
 * Tec de monterrey
 
-## Puntos esenciales de Geek It:
+## Puntos esenciales de Geek It
 
 Comunicación en tiempo real.
 
@@ -24,7 +23,7 @@ Contenido de interés - Documentos - Eventos - Recomendación de Trabajo o Freel
 
 ## Objetivos
 
-El objetivo principal de Geek It es hacer comunidad para nuevos desarrolladores, compartir eventos en la ciudad, sugerencias, compartir material de interes, conocer más personas con perfiles similares, mandar recomendaciones de empleo, etc.
+El objetivo principal de Geek It es hacer comunidad para nuevos desarrolladores, compartir eventos en la ciudad, sugerencias, compartir material de interés, conocer más personas con perfiles similares, mandar recomendaciones de empleo, etc.
 
 ## Consideraciones generales
 
@@ -36,8 +35,6 @@ La lógica del proyecto esta implementado completamente:
 * Firebase
 
 ### Definición del producto
-
-¿Cómo conocimos el mercado de las redes sociales?
 
 ¿Cómo descubrimos las necesidades de los usuarios?
 
@@ -197,7 +194,4 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 | Presentaciones | 
 
 ***
-
-### Modelo de Negocio
-
 ### Conclusiones
