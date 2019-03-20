@@ -266,7 +266,7 @@ window.controlador = {
       var comentario = document.getElementById('comentario').value;
       let likes = 0
       if (comentario == "") {
-        alert("debes agregar un comentario")
+        alert("Debes agregar un comentario")
 
 
       } else {
@@ -408,11 +408,13 @@ window.controlador = {
             
             const guardar = document.getElementById("guardar")
             guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `
-            
-            
 
             guardar.addEventListener("click", () => {
               const habilitaTtx = document.getElementById("txt").value;
+              if (habilitaTtx == "") {
+                alert("Debes agregar un comentario")
+              }else{
+
               const msjEditado = habilitaTtx;
               var publiEditada = db.collection("publicaciones").doc(id);
               console.log(msjEditado);
@@ -427,9 +429,10 @@ window.controlador = {
                   // The document probably doesn't exist.
                   console.error("Error updating document: ", error);
                 });
+              }
             })
 
-
+          
           }
         })
       }
