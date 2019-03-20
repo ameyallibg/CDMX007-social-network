@@ -81,6 +81,8 @@ Crear comunidad en área metropolitana.
 
 Construimos un prototipo de baja fidelidad en **MARVEL** [click aquí](https://marvelapp.com/b3j3ci1/screen/54084027)
 
+![Prototipo](http://img.fenixzone.net/i/AP3y0qg.png)
+
 ### Responsive
 Mobile First
 ### Pruebas unitarias (unit tests)
@@ -132,7 +134,7 @@ La interfaz debe permitir lo siguiente:
 
 * Perspectiva de interfaz:
 
-  ![Muro](https://user-images.githubusercontent.com/9284690/40994768-c52c3442-68c2-11e8-99a5-9e127e700dee.png)
+  ![Muro](http://img.fenixzone.net/i/AP3y0qg.png)
 
 #### Otras consideraciones
 
