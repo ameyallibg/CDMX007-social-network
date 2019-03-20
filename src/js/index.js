@@ -391,8 +391,10 @@ window.controlador = {
             
             var publiEditada = db.collection("publicaciones").doc(id);
 
-           const hola= document.getElementById("txt").disabled= false;
-            const msjEditado = hola.value;
+           const habilitaTtx= document.getElementById("txt").disabled= false;
+            const msjEditado = habilitaTtx.value;
+
+
             return publiEditada.update({
                 mensaje: msjEditado
               })
