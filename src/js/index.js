@@ -334,7 +334,7 @@ window.controlador = {
             <img src="${doc.data().photo}" class="avatar avatar-img">
             <p class="avatar-autor">${doc.data().autor}</p>
             
-            <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
+            <button id= "${doc.id}"  class="tablas avatar-like avatar-like-editar" data-like=${doc.data().like} ></button>
             
             </div>
             
