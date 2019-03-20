@@ -1,19 +1,17 @@
+<div>
+
+
 <h5 class="modal-title color-green" id="exampleModalLabel">Registrar una nueva cuenta</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-</div>
+
 <div class="modal-body">
   <form name="add-form">
     <input class="input-type margin-input mr-sm-2" type="text" name="userId" placeholder="Nombre" id="name">
     <input class="input-type margin-input mr-sm-2" type="email" name="email" id="sign-in-new" placeholder="Ingresa email">
     <input class="input-type margin-input mr-sm-2" type="password" name="password" id="password-new" placeholder="Contraseña">
-    <input class="margin-input radio-margin" type="radio" name="mujer" value="Mujer">Mujer
-    <input class="margin-input radio-margin" type="radio" name="hombre" value="Hombre">Hombre<br>
+    <section id="error-reg"></section>
     <select class="margin-input select-class" name="Selecciona Bootcamp">
 
       <option>Selecciona Bootcamp</option>
-
       <option value="Bedu" name="bedu">Bedu</option>
       <option value="Iron Hack" name="iron">Iron Hack</option>
       <option value="Hub Camps" name="hub">Hub Camps</option>
@@ -25,9 +23,10 @@
     <p id="modal-invalid-email"></p>
   </form>
 </div>
+
 <div class="modal-footer">
   <p id="modal-warning"></p>
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+  <button type="button" id="button-comeback" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
   <button type="button" id="button-sign-in-new" class="btn btn-primary">Registrar</button>
 </div>
-<footer>Geek it Derechos Reservados 2019.</footer>
+<footer>Geek it Derechos Reservados 2019.</footer></div>
