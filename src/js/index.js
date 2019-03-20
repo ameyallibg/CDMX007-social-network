@@ -307,16 +307,12 @@ window.controlador = {
 
         const mailUser = user.email;
 
-        console.log(user.email)
-
-        console.log(doc)
-
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
         <div class="container-pub">
           <p>${doc.data().autor}</p>
           <img src="${doc.data().photo}" class="avatar">
-          <textarea id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <textarea id= "txt" name="textarea" rows="10" cols="50" disabled="true" class= "text-publica">${doc.data().mensaje}</textarea>
           <button id= "${doc.id}"  class="tablasEliminar" >Eliminar</button> 
           <button id= "${doc.id}"  class="tablasEditar" >Editar</button> 
           <button id= "${doc.id}"  class="tablas" data-like=${doc.data().like} >Like</button>
@@ -395,13 +391,14 @@ window.controlador = {
             
             var publiEditada = db.collection("publicaciones").doc(id);
 
-            
-            // Set the "capital" field of the city 'DC'
+           const hola= document.getElementById("txt").disabled= false;
+            const msjEditado = hola.value;
             return publiEditada.update({
-                mensaje: true
+                mensaje: msjEditado
               })
               .then(function () {
                 console.log("Document successfully updated!");
+                document.getElementById("txt").disabled= true;
               })
               .catch(function (error) {
                 // The document probably doesn't exist.
