@@ -243,6 +243,7 @@ window.controlador = {
           mensaje: comentario,
           email: emailUser,
           like: 0,
+          date: firebase.firestore.FieldValue.serverTimestamp(),
         
         })      
       }
@@ -255,8 +256,9 @@ window.controlador = {
 
     //leer info
     var muro = document.getElementById('muro');
-    db.collection("publicaciones").onSnapshot((querySnapshot) => {
+    db.collection("publicaciones").orderBy('date','desc').onSnapshot((querySnapshot) => {
       muro.innerHTML = '';
+      
       querySnapshot.forEach((doc) => {
 
         const user = firebase.auth().currentUser;
