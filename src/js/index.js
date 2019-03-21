@@ -231,8 +231,9 @@ window.controlador = {
       const nameUser = user.displayName;
       const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
+
       if (comentario == "") {
-        alert("Debes agregar un comentario")
+        alert("debes agregar un comentario")
 
 
       } else {
@@ -242,8 +243,11 @@ window.controlador = {
           mensaje: comentario,
           email: emailUser,
           like: 0,
-        })
+          date: firebase.firestore.FieldValue.serverTimestamp(),
+        
+        })      
       }
+
     })
 
 
@@ -252,8 +256,9 @@ window.controlador = {
 
     //leer info
     var muro = document.getElementById('muro');
-    db.collection("publicaciones").onSnapshot((querySnapshot) => {
+    db.collection("publicaciones").orderBy('date','desc').onSnapshot((querySnapshot) => {
       muro.innerHTML = '';
+      
       querySnapshot.forEach((doc) => {
 
         const user = firebase.auth().currentUser;
@@ -263,13 +268,12 @@ window.controlador = {
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
         <div class="container-pub">
-
         <div class="alinear">
           <img src="${doc.data().photo}" class="avatar avatar-img">
           <p class="avatar-autor">${doc.data().autor}</p>
           <button id= "${doc.id}"  class="tablasEditar avatar-editar" ><u></u></button>
           <button id= "${doc.id}"  class="tablas avatar-like" data-like=${doc.data().like} ></button>
-          
+          <p class="number-likes" >${doc.data().like}</p>
           </div>
           
           <textarea class="textarea"id= "txt" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
@@ -280,13 +284,12 @@ window.controlador = {
         } else {
           muro.innerHTML += `
           <div class="container-pub">
-
           <div class="alinear">
             <img src="${doc.data().photo}" class="avatar avatar-img">
             <p class="avatar-autor">${doc.data().autor}</p>
             
             <button id= "${doc.id}"  class="tablas avatar-like avatar-like-editar" data-like=${doc.data().like} ></button>
-            
+            <p class="number-likes" >${doc.data().like}</p>
             </div>
             
             <textarea class="textarea"id= "${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
@@ -308,6 +311,7 @@ window.controlador = {
           let likeit = parseInt(e.target.dataset.like)
           likeit++;
           console.log(likeit)
+
 
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
@@ -351,27 +355,13 @@ window.controlador = {
           if (confirm("¿Estas seguro de editar este mensaje?") == true) {
 
             let id = tablasEditar[i].id
-
-            document.getElementById("txt").disabled = false;
-            
-
+            const habilitaTtx = document.getElementById("txt").value;
             const guardar = document.getElementById("guardar")
             guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `
-<<<<<<< HEAD
-=======
 
 
->>>>>>> upstrem/master
 
             guardar.addEventListener("click", () => {
-
-              const habilitaTtx = document.getElementById("txt").value;
-<<<<<<< HEAD
-              if (habilitaTtx == "") {
-                alert("Debes agregar un comentario")
-              }else{
-=======
->>>>>>> upstrem/master
 
               const msjEditado = habilitaTtx;
               var publiEditada = db.collection("publicaciones").doc(id);
@@ -387,10 +377,9 @@ window.controlador = {
                   // The document probably doesn't exist.
                   console.error("Error updating document: ", error);
                 });
-              }
             })
 
-          
+
           }
         })
       }
