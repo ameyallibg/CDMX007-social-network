@@ -21,6 +21,11 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
+      let selection= document.getElementById("select");
+      let value = selection.value
+      console.log(value)
+
+
 
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
@@ -51,6 +56,25 @@ window.controlador = {
               <p> ${errorMessage} </p></div>`;
 
         })
+        var db= firebase.firestore();
+        const user = firebase.auth().currentUser;    
+        const photoUser = user.photoURL;
+        const nameUser = user.displayName;
+        const emailUser = user.email;
+        db.collection("publicaciones").add({
+          photo: photoUser,
+          autor: nameUser,
+          email: emailUser,
+          boot: value,
+          like: 0,
+          date: firebase.firestore.FieldValue.serverTimestamp(), 
+          mensaje:"",
+
+  
+        }) 
+
+
+
     })
 
     const verification = () => {
@@ -225,11 +249,11 @@ window.controlador = {
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
       // var nombre = document.getElementById('nombre').value;
-      const user = firebase.auth().currentUser;
-      // db.collection("usuarios").add({      
-      const photoUser = user.photoURL;
-      const nameUser = user.displayName;
-      const emailUser = user.email;
+      // const user = firebase.auth().currentUser;
+      // // db.collection("usuarios").add({      
+      // const photoUser = user.photoURL;
+      // const nameUser = user.displayName;
+      // const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
 
       if (comentario == "") {
@@ -237,14 +261,12 @@ window.controlador = {
 
 
       } else {
-        firebase.firestore().collection('publicaciones').add({
-          photo: photoUser,
-          autor: nameUser,
+        db.collection('publicaciones').doc(id).update()({
+          
           mensaje: comentario,
-          email: emailUser,
-          like: 0,
-          date: firebase.firestore.FieldValue.serverTimestamp(),
-        
+          
+
+
         })      
       }
 
