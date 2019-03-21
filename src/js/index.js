@@ -12,7 +12,7 @@ window.controlador = {
     const nombre = document.getElementById("name");
     const botonCerrar = document.getElementById("button-comeback")
     var db = firebase.firestore();
-    botonCerrar.addEventListener("click",()=>{
+    botonCerrar.addEventListener("click", () => {
       window.location.hash = '#/';
 
     })
@@ -50,9 +50,9 @@ window.controlador = {
               modalInvalidEmail.innerHTML = ` <div class="alert alert-warning" role="alert">
                                           <p> ${errorMessage} </p></div>`;
             });
-        }).catch(function(error){
+        }).catch(function (error) {
           var errorMessage = error.message;
-              errorRegistro.innerHTML= ` <div class="alert alert-warning" role="alert">
+          errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
               <p> ${errorMessage} </p></div>`;
 
         })
@@ -165,8 +165,7 @@ window.controlador = {
     buttonSignInGit.addEventListener("click", () => {
       var provider = new firebase.auth.GithubAuthProvider();
 
-      firebase.auth().signInWithRedirect(provider).then(function (result) {
-      }).catch(function (error) {
+      firebase.auth().signInWithRedirect(provider).then(function (result) {}).catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode);
@@ -257,30 +256,35 @@ window.controlador = {
       var comentario = document.getElementById('comentario').value;
 
       if (comentario == "") {
-        alert("debes agregar un comentario")
+        alert("Debes agregar un COMENTARIO!!")
 
 
       } else {
         db.collection('publicaciones').doc(id).update()({
           
           mensaje: comentario,
+<<<<<<< HEAD
           
 
 
         })      
+=======
+          email: emailUser,
+          like: 0,
+          date: firebase.firestore.FieldValue.serverTimestamp(),
+
+        })
+>>>>>>> origin/master
       }
 
     })
 
 
-
-
-
     //leer info
     var muro = document.getElementById('muro');
-    db.collection("publicaciones").orderBy('date','desc').onSnapshot((querySnapshot) => {
+    db.collection("publicaciones").orderBy('date', 'desc').onSnapshot((querySnapshot) => {
       muro.innerHTML = '';
-      
+
       querySnapshot.forEach((doc) => {
 
         const user = firebase.auth().currentUser;
@@ -290,7 +294,6 @@ window.controlador = {
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
         <div class="container-pub">
-
         <div class="alinear">
           <img src="${doc.data().photo}" class="avatar avatar-img">
           <p class="avatar-autor">${doc.data().autor}</p>
@@ -299,15 +302,14 @@ window.controlador = {
           <p class="number-likes" >${doc.data().like}</p>
           </div>
           
-          <textarea class="textarea"id= "txt" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
+          <textarea class="textarea"id= "txt-${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
           <button id= "${doc.id}"  class="tablasEliminar avatar-eliminar" ><u>Eliminar</u></button> 
-          <p id = "guardar"></p>
+          <p id = "guardar-${doc.id}"></p>
         </div>
         `
         } else {
           muro.innerHTML += `
           <div class="container-pub">
-
           <div class="alinear">
             <img src="${doc.data().photo}" class="avatar avatar-img">
             <p class="avatar-autor">${doc.data().autor}</p>
@@ -357,7 +359,7 @@ window.controlador = {
 
         tablasEliminar[i].addEventListener('click', () => {
 
-          if (confirm("¿Estas seguro de eliminar este mensaje?") == true) {
+          if (confirm("¿Estas seguro de ELIMINAR este mensaje?") == true) {
 
             let id = tablasEliminar[i].id
 
@@ -373,37 +375,43 @@ window.controlador = {
       }
 
       const tablasEditar = document.getElementsByClassName('tablasEditar')
+      
       for (let i = 0; i < tablasEditar.length; i++) {
 
         tablasEditar[i].addEventListener('click', () => {
           if (confirm("¿Estas seguro de editar este mensaje?") == true) {
+            let id = tablasEditar[i].id;
 
-            let id = tablasEditar[i].id
-            const habilitaTtx = document.getElementById("txt").value;
-            const guardar = document.getElementById("guardar")
-            guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `
+            document.getElementById("txt-" + id).disabled = false;
 
-
+            const guardar = document.getElementById("guardar-"+id);
+            guardar.innerHTML = `<button id= "guardarbtn"  class="avatar-eliminar" ><u>Guardar</u></button> `;
 
             guardar.addEventListener("click", () => {
 
-              const msjEditado = habilitaTtx;
+              const msjEditado = document.getElementById("txt-" + id).value;
+              
+              if (msjEditado == "") {
+                alert("Debes agregar un COMENTARIO!!");
+        
+              }else{
               var publiEditada = db.collection("publicaciones").doc(id);
-              console.log(msjEditado);
+              
               return publiEditada.update({
                   mensaje: msjEditado
+
                 })
                 .then(function () {
                   console.log("Document successfully updated!");
-                  document.getElementById("txt").disabled = true;
+                  document.getElementById("txt-" + id).disabled = true;
+                  guardar.innerHTML = "";
                 })
                 .catch(function (error) {
                   // The document probably doesn't exist.
                   console.error("Error updating document: ", error);
                 });
+              }
             })
-
-
           }
         })
       }
