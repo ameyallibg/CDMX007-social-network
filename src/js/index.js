@@ -37,13 +37,7 @@ window.controlador = {
             displayName: name,
 
             photoURL: "assets/img/alien.png"
-          }).then(function () {
-
-            // Update successful.
-          }).catch(function (error) {
-            console.log(error.message)
-            // An error happened.
-          });
+          })
           verification()
 
             .catch(function (error) {
@@ -54,8 +48,19 @@ window.controlador = {
             });
         }).catch(function (error) {
           var errorMessage = error.message;
-          errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
-              <p> ${errorMessage} </p></div>`;
+          console.log(errorMessage)
+          
+          if (errorMessage == "The email address is badly formatted.") {
+            errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
+              <p> El email no tiene el formato correcto</p></div>`;
+              
+            
+          }else if (errorMessage == "Password should be at least 6 characters") {
+            errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
+              <p> La contraseña deberia de tener al menos 6 caracteres</p></div>`;
+             
+          }
+          
 
         })
         
@@ -341,7 +346,7 @@ window.controlador = {
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
               like: likeit,
-            }).then(function () {
+            }).then(function () { 
               console.log("Document successfully updated!");
             })
             .catch(function (error) {
