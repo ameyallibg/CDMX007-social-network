@@ -1,7 +1,7 @@
 
 ## Introducción
 
-**Geek** It es una red social dirigida a estudiantes de bootcamps en la Ciudad de México, al 
+**Geek It** es una red social dirigida a estudiantes de bootcamps en la Ciudad de México, al 
 realizar una encuesta analizamos que los integrantes de bootcamps en desarrollo web a pesar de contar con grupos especificos para compartir información o eventos en otras redes sociales, no contaban con un canal local y específico, relacionado con gente que estuviera aprendiendo a su mismo ritmo pero en diferentes bootcamps.
 
 * Bedu
@@ -14,11 +14,11 @@ realizar una encuesta analizamos que los integrantes de bootcamps en desarrollo 
 
 ## Puntos esenciales de Geek It
 
-Comunicación en tiempo real.
+- Comunicación en tiempo real.
 
-Relación - Gustos o intereses 
+- Relación - Gustos o intereses 
  
-Contenido de interés - Documentos - Eventos - Recomendación de Trabajo o Freelance.
+- Contenido de interés - Documentos - Eventos - Recomendación de Trabajo o Freelance.
 
 
 ## Objetivos
@@ -38,26 +38,18 @@ La lógica del proyecto esta implementado completamente:
 
 - ¿Cómo descubrimos las necesidades de los usuarios?
 Compartimos instalaciones con otro Bootcamp y haciendo sondeo nos percatamos que entre
-laboratoria e ironhack no hay comunicación directa, eso nos llevó a la hipótesis de que la
+laboratoria e Ironhack no hay comunicación directa, eso nos llevó a la hipótesis de que la
 falta de comunicación interbootcamp era por que no existe una comunidad entre estos.
 
 
 - ¿Cómo llegamos a la definición final del producto?
 Geek it (geekealo) es una expresión que viene de Geek, un término que se utiliza para referirse a quien se fascina por la tecnología y la informática. Geek It es una red social interbootcamp.
 
-- Imágenes, cuestionarios.
-
-![Encuesta](http://img.fenixzone.net/i/auR5A4I.png)
-![Encuesta2](http://img.fenixzone.net/i/u85jaBc.png)
-  
-
 * Se conforma por un perfil del usuario, un feed o muro público y likes.
 * Principales usuarios: desarrollador@s web estudiantes de bootcamps en Ciudad México.
 * Problema que resuelve para estos usuarios, falta de comunicación y comunidad entre bootcamps de la ciudad.
 * Conocer más gente que se encuentre en aprendisaje intensivo y recibir recomendación o ayuda en proyectos y dudas.
 * Testeo con usuarios
-
------Fotos de personas usando geek it------
 
 
 ### Historias de usuario
@@ -75,8 +67,7 @@ Geek it (geekealo) es una expresión que viene de Geek, un término que se utili
 
 ### Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
-Construimos un prototipo de baja fidelidad en **MARVEL** [click aquí](https://marvelapp.com/b3j3ci1/screen/54084027)
-
+Construimos un prototipo de baja fidelidad en [MARVEL](https://marvelapp.com/b3j3ci1/screen/54084027)
 ![Prototipo](http://img.fenixzone.net/i/AP3y0qg.png)
 
 ### Responsive
@@ -111,7 +102,7 @@ La interfaz debe permitir lo siguiente:
 
 * Perspectiva de interfaz:
 
-  ![Login](http://img.fenixzone.net/i/JCe6ZIE.png)
+  ![Login](http://img.fenixzone.net/i/jGOn2d1.png)
 
 #### Muro/timeline de la red social
 
@@ -130,7 +121,7 @@ La interfaz debe permitir lo siguiente:
 
 * Perspectiva de interfaz:
 
-  -----pantallazo de muro----
+  ![Muro](http://img.fenixzone.net/i/PJYZKsn.png)
 
 #### Otras consideraciones
 
@@ -142,10 +133,25 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 
 ### Consideraciones UX
 
-* Formularios, aquí.
-* Hacer un  prototipo de baja fidelidad, aquí.
+* Formularios.
+![Encuesta](http://img.fenixzone.net/i/auR5A4I.png)
+![Encuesta2](http://img.fenixzone.net/i/u85jaBc.png)
+* Hacer un  prototipo de baja fidelidad. 
 * Asegurarte de que la implementación en código siga los lineamientos del diseño.
 * Sesiones de testing con el producto en HTML, ver.
+
+![Usuario1](http://img.fenixzone.net/i/XHTjc74.jpeg)
+
+![Usuario2](http://img.fenixzone.net/i/l7pZzhT.jpeg)
+
+![Usuario3](http://img.fenixzone.net/i/yb9HWCs.jpeg)
+
+![Usuario4](http://img.fenixzone.net/i/gCNQkIh.jpeg)
+
+
+
+
+
 
 ### Tech
 
@@ -192,10 +198,11 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 | Comunicación eficaz | 
 | Presentaciones | 
 
-***
 ### Conclusiones
 
+Geek It se creó con el objetivo de ser una red social temática, conectar a las personas con intereses específicos en común, en este caso los Coding Bootcamps CDMX y así sumarse a los canales de comunicación que existen para finalmente compartir conociento, tips, recomendaciones y experiencias dentro del mundo del desarrollo web.
+
 ### Créditos
-- [Amellaly Brito](https://github.com/ameyallibg)
+- [Ameyalli Brito](https://github.com/ameyallibg)
 - [Erandi Cuervo](https://github.com/ErandiCVC13)
 - [Viviana Navarro](https://github.com/Vivianavarro?tab=repositories)
