@@ -3,7 +3,9 @@ window.controlador = {
   firebase: firebase.initializeApp(config),
 
   registro: () => {
-    const signIn = document.getElementById("sign-in-new");
+
+    const signIn =library.getID("sign-in-new")
+    //  document.getElementById("sign-in-new");
     const password = document.getElementById("password-new");
     const buttonSignIn = document.getElementById("button-sign-in-new");
     const modalWarning = document.getElementById("modal-warning");
@@ -232,10 +234,9 @@ window.controlador = {
 
   posteos: () => {
 
-
-
     var db = firebase.firestore();
-    const emailUser = document.getElementById("emailUser");
+
+    const emailUser = library.getID("emailUser");
     const emailUserNew = emailUser.textContent
 
     db.collection("bootcamp").where("email", "==", emailUserNew).get().then((querySnapshot) => {
@@ -286,6 +287,8 @@ window.controlador = {
         const user = firebase.auth().currentUser;
 
         const mailUser = user.email;
+
+        
 
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
