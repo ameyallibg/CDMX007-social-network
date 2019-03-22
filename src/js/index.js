@@ -10,10 +10,13 @@ window.controlador = {
     const modalInvalidEmail = document.getElementById("modal-invalid-email");
     const errorRegistro = document.getElementById("error-reg");
     const nombre = document.getElementById("name");
-    const botonCerrar = document.getElementById("button-comeback")
+    const botonCerrar = document.getElementById("button-comeback");
+    
+    
     var db = firebase.firestore();
     botonCerrar.addEventListener("click", () => {
       window.location.hash = '#/';
+      
 
     })
 
@@ -21,6 +24,8 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
+      
+
 
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
@@ -51,6 +56,11 @@ window.controlador = {
               <p> ${errorMessage} </p></div>`;
 
         })
+        
+
+           
+        
+  
     })
 
     const verification = () => {
@@ -72,9 +82,12 @@ window.controlador = {
       buttonSignIn.addEventListener('click', (event) => {
 
         const addForm = document.forms.namedItem("add-form");
+        let select = document.getElementById("select")
+        const selectBoot = select.value
 
-        db.collection("posts").add({
-            name: addForm.elements.userId.value,
+
+        db.collection("bootcamp").add({
+            bootcamp:selectBoot,
             email: addForm.elements.email.value,
 
           })
@@ -219,7 +232,20 @@ window.controlador = {
 
   posteos: () => {
 
+
+
     var db = firebase.firestore();
+    const emailUser = document.getElementById("emailUser");
+    const emailUserNew = emailUser.textContent
+
+    db.collection("bootcamp").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+      const container = document.getElementById("contenido");
+      container.innerHTML = "";
+
+      querySnapshot.forEach((doc) => {
+        container.innerHTML += `${doc.data().bootcamp} </br>`;
+      });
+    });
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
