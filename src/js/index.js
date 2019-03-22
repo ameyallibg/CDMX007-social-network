@@ -3,22 +3,17 @@ window.controlador = {
   firebase: firebase.initializeApp(config),
 
   registro: () => {
-
-    const signIn =library.getID("sign-in-new")
-    //  document.getElementById("sign-in-new");
+    const signIn = document.getElementById("sign-in-new");
     const password = document.getElementById("password-new");
     const buttonSignIn = document.getElementById("button-sign-in-new");
     const modalWarning = document.getElementById("modal-warning");
     const modalInvalidEmail = document.getElementById("modal-invalid-email");
     const errorRegistro = document.getElementById("error-reg");
     const nombre = document.getElementById("name");
-    const botonCerrar = document.getElementById("button-comeback");
-    
-    
+    const botonCerrar = document.getElementById("button-comeback")
     var db = firebase.firestore();
     botonCerrar.addEventListener("click", () => {
       window.location.hash = '#/';
-      
 
     })
 
@@ -26,8 +21,6 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
-      
-
 
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
@@ -37,7 +30,13 @@ window.controlador = {
             displayName: name,
 
             photoURL: "assets/img/alien.png"
-          })
+          }).then(function () {
+
+            // Update successful.
+          }).catch(function (error) {
+            console.log(error.message)
+            // An error happened.
+          });
           verification()
 
             .catch(function (error) {
@@ -48,26 +47,10 @@ window.controlador = {
             });
         }).catch(function (error) {
           var errorMessage = error.message;
-          console.log(errorMessage)
-          
-          if (errorMessage == "The email address is badly formatted.") {
-            errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
-              <p> El email no tiene el formato correcto</p></div>`;
-              
-            
-          }else if (errorMessage == "Password should be at least 6 characters") {
-            errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
-              <p> La contraseña deberia de tener al menos 6 caracteres</p></div>`;
-             
-          }
-          
+          errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
+              <p> ${errorMessage} </p></div>`;
 
         })
-        
-
-           
-        
-  
     })
 
     const verification = () => {
@@ -89,12 +72,9 @@ window.controlador = {
       buttonSignIn.addEventListener('click', (event) => {
 
         const addForm = document.forms.namedItem("add-form");
-        let select = document.getElementById("select")
-        const selectBoot = select.value
 
-
-        db.collection("bootcamp").add({
-            bootcamp:selectBoot,
+        db.collection("posts").add({
+            name: addForm.elements.userId.value,
             email: addForm.elements.email.value,
 
           })
@@ -205,6 +185,8 @@ window.controlador = {
       var user = user;
       var providerId = user.providerData[0].providerId;
 
+      
+
       if (user.emailVerified || providerId == "facebook.com" || providerId == "github.com") {
         window.location.hash = '#/wall';
         //poniendolo antes de las variables y dentro del settimeout
@@ -240,18 +222,6 @@ window.controlador = {
   posteos: () => {
 
     var db = firebase.firestore();
-
-    const emailUser = library.getID("emailUser");
-    const emailUserNew = emailUser.textContent
-
-    db.collection("bootcamp").where("email", "==", emailUserNew).get().then((querySnapshot) => {
-      const container = document.getElementById("contenido");
-      container.innerHTML = "";
-
-      querySnapshot.forEach((doc) => {
-        container.innerHTML += `${doc.data().bootcamp} </br>`;
-      });
-    });
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
@@ -277,6 +247,8 @@ window.controlador = {
           date: firebase.firestore.FieldValue.serverTimestamp(),
 
         })
+
+        db.collection('publucaciones')
       }
 
     })
@@ -292,8 +264,6 @@ window.controlador = {
         const user = firebase.auth().currentUser;
 
         const mailUser = user.email;
-
-        
 
         if (mailUser === doc.data().email) {
           muro.innerHTML += `
@@ -346,7 +316,7 @@ window.controlador = {
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
               like: likeit,
-            }).then(function () { 
+            }).then(function () {
               console.log("Document successfully updated!");
             })
             .catch(function (error) {
