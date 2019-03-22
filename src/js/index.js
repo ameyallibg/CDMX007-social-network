@@ -246,6 +246,7 @@ window.controlador = {
         container.innerHTML += `${doc.data().bootcamp} </br>`;
       });
     });
+    
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
@@ -256,6 +257,9 @@ window.controlador = {
       const nameUser = user.displayName;
       const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
+    
+      
+    
 
       if (comentario == "") {
         alert("Debes agregar un COMENTARIO!!")
@@ -274,6 +278,8 @@ window.controlador = {
       }
 
     })
+    
+    
 
 
     //leer info
