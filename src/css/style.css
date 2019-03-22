@@ -212,7 +212,7 @@ footer{
     text-align: center;
     padding: 10px;
     color: grey;
-    margin: 20px 0px 0px 0px;
+    margin-top: 7em;
  }
 
  .modal-background{
@@ -229,9 +229,13 @@ footer{
      opacity: .8;
  }
  .select-class{
-    border-radius: 4px;
     width: 60%;
     padding-left: 2%;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    color: white;
+
+    height: 2.2em;
  }
  .radio-margin{
     margin-left: 20%;
@@ -334,4 +338,29 @@ footer{
     margin-top: -2em;
     margin-bottom: .5em;
     font-size: .9em;
+ }
+ .register-div{
+    margin-top: 33%;
+    margin-left: 3%;
+    margin-right: 3%;
+
+ }
+ .margin-title{
+    margin-left: 5%;
+ }
+ .color-back-green{
+    background-color: chartreuse;
+ }
+
+ .color-white{
+     background-color: white;
+ }
+ .border-color-green{
+     border-top-color: chartreuse
+ }
+ .margin-ref{
+    margin-left: 75%;
+ }
+ .font-slogan{
+    font-size: 5vw;
  }

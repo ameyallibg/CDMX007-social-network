@@ -24,6 +24,14 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
+      const addForm = document.forms.namedItem("add-form");
+      let select = document.getElementById("select")
+      const selectBoot = select.value
+      
+      
+      if (signInValue == "" ||  passwordValue == "" || name == "" || selectBoot == "Selecciona Bootcamp") {
+        alert("Porfavor completa todos los campos")
+      }else{
       
 
 
@@ -51,19 +59,48 @@ window.controlador = {
           if (errorMessage == "The email address is badly formatted.") {
             errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
               <p> El email no tiene el formato correcto</p></div>`;
+              setTimeout(function () {
+                errorRegistro.innerHTML="";
+              }, 3000);
               
             
           }else if (errorMessage == "Password should be at least 6 characters") {
             errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
               <p> La contraseña deberia de tener al menos 6 caracteres</p></div>`;
+              setTimeout(function () {
+                errorRegistro.innerHTML="";
+              }, 3000);
              
           }
           
 
         })
         
+        
+  
+  
+          db.collection("bootcamp").add({
+              bootcamp:selectBoot,
+              email: addForm.elements.email.value,
+  
+            })
+            .then((docRef) => {
+              console.log("Document written with ID: ", docRef.id);
+            })
+            .catch((error) => {
+              console.error("Error adding document: ", error);
+            });
+          //const userIds = addForm.elements.userId.value;
 
-           
+      } 
+      
+        
+  
+          
+  
+        
+      
+
         
   
     })
@@ -83,29 +120,7 @@ window.controlador = {
       });
     }
 
-    if (window.location.href.includes("registro")) {
-      buttonSignIn.addEventListener('click', (event) => {
 
-        const addForm = document.forms.namedItem("add-form");
-        let select = document.getElementById("select")
-        const selectBoot = select.value
-
-
-        db.collection("bootcamp").add({
-            bootcamp:selectBoot,
-            email: addForm.elements.email.value,
-
-          })
-          .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch((error) => {
-            console.error("Error adding document: ", error);
-          });
-        //const userIds = addForm.elements.userId.value;
-
-      });
-    }
 
 
 
@@ -133,9 +148,15 @@ window.controlador = {
           if (errorMessage == 'The email address is badly formatted.') {
             show.innerHTML = ` <div class=" alert-warning alert" role="alert">
                                 <p class="margin-warning">La direccion del correo no es valida</p></div>`;
+                                setTimeout(function () {
+                                  show.innerHTML="";
+                                }, 3000);
           } else {
             show.innerHTML = ` <div class=" alert-warning alert" role="alert">
                                 <p class="margin-warning">${errorCode}</p></div>`;
+                                setTimeout(function () {
+                                  show.innerHTML="";
+                                }, 3000);
 
           }
         });
