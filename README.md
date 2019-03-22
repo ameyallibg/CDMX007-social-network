@@ -67,7 +67,7 @@ Geek it (geekealo) es una expresión que viene de Geek, un término que se utili
 
 ### Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
-Construimos un prototipo de baja fidelidad en **MARVEL**
+Construimos un prototipo de baja fidelidad en [MARVEL](https://marvelapp.com/b3j3ci1/screen/54084027)
 ![Prototipo](http://img.fenixzone.net/i/AP3y0qg.png)
 
 ### Responsive
@@ -136,7 +136,7 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 * Formularios.
 ![Encuesta](http://img.fenixzone.net/i/auR5A4I.png)
 ![Encuesta2](http://img.fenixzone.net/i/u85jaBc.png)
-* Hacer un  prototipo de baja fidelidad. [click aquí](https://marvelapp.com/b3j3ci1/screen/54084027)
+* Hacer un  prototipo de baja fidelidad. 
 * Asegurarte de que la implementación en código siga los lineamientos del diseño.
 * Sesiones de testing con el producto en HTML, ver.
 
