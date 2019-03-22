@@ -10,10 +10,13 @@ window.controlador = {
     const modalInvalidEmail = document.getElementById("modal-invalid-email");
     const errorRegistro = document.getElementById("error-reg");
     const nombre = document.getElementById("name");
-    const botonCerrar = document.getElementById("button-comeback")
+    const botonCerrar = document.getElementById("button-comeback");
+    
+    
     var db = firebase.firestore();
     botonCerrar.addEventListener("click", () => {
       window.location.hash = '#/';
+      
 
     })
 
@@ -21,10 +24,7 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
-      let selection= document.getElementById("select");
-      let value = selection.value
-      console.log(value)
-
+      
 
 
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
@@ -56,25 +56,11 @@ window.controlador = {
               <p> ${errorMessage} </p></div>`;
 
         })
-        var db= firebase.firestore();
-        const user = firebase.auth().currentUser;    
-        const photoUser = user.photoURL;
-        const nameUser = user.displayName;
-        const emailUser = user.email;
-        db.collection("publicaciones").add({
-          photo: photoUser,
-          autor: nameUser,
-          email: emailUser,
-          boot: value,
-          like: 0,
-          date: firebase.firestore.FieldValue.serverTimestamp(), 
-          mensaje:"",
+        
 
+           
+        
   
-        }) 
-
-
-
     })
 
     const verification = () => {
@@ -96,9 +82,12 @@ window.controlador = {
       buttonSignIn.addEventListener('click', (event) => {
 
         const addForm = document.forms.namedItem("add-form");
+        let select = document.getElementById("select")
+        const selectBoot = select.value
 
-        db.collection("posts").add({
-            name: addForm.elements.userId.value,
+
+        db.collection("bootcamp").add({
+            bootcamp:selectBoot,
             email: addForm.elements.email.value,
 
           })
@@ -243,16 +232,29 @@ window.controlador = {
 
   posteos: () => {
 
+
+
     var db = firebase.firestore();
+    const emailUser = document.getElementById("emailUser");
+    const emailUserNew = emailUser.textContent
+
+    db.collection("bootcamp").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+      const container = document.getElementById("contenido");
+      container.innerHTML = "";
+
+      querySnapshot.forEach((doc) => {
+        container.innerHTML += `${doc.data().bootcamp} </br>`;
+      });
+    });
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
       // var nombre = document.getElementById('nombre').value;
-      // const user = firebase.auth().currentUser;
-      // // db.collection("usuarios").add({      
-      // const photoUser = user.photoURL;
-      // const nameUser = user.displayName;
-      // const emailUser = user.email;
+      const user = firebase.auth().currentUser;
+      // db.collection("usuarios").add({      
+      const photoUser = user.photoURL;
+      const nameUser = user.displayName;
+      const emailUser = user.email;
       var comentario = document.getElementById('comentario').value;
 
       if (comentario == "") {
@@ -260,21 +262,15 @@ window.controlador = {
 
 
       } else {
-        db.collection('publicaciones').doc(id).update()({
-          
+        firebase.firestore().collection('publicaciones').add({
+          photo: photoUser,
+          autor: nameUser,
           mensaje: comentario,
-<<<<<<< HEAD
-          
-
-
-        })      
-=======
           email: emailUser,
           like: 0,
           date: firebase.firestore.FieldValue.serverTimestamp(),
 
         })
->>>>>>> origin/master
       }
 
     })
