@@ -276,12 +276,13 @@ window.controlador = {
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
-      // var nombre = document.getElementById('nombre').value;
+          // var nombre = document.getElementById('nombre').value;
       const user = firebase.auth().currentUser;
       // db.collection("usuarios").add({      
       const photoUser = user.photoURL;
       const nameUser = user.displayName;
       const emailUser = user.email;
+      var inputComment = document.getElementById('comentario');
       var comentario = document.getElementById('comentario').value;
     
       
@@ -292,6 +293,8 @@ window.controlador = {
 
 
       } else {
+
+        
         firebase.firestore().collection('publicaciones').add({
           photo: photoUser,
           autor: nameUser,
@@ -301,6 +304,8 @@ window.controlador = {
           date: firebase.firestore.FieldValue.serverTimestamp(),
 
         })
+        inputComment.value="";
+        
       }
 
     })
