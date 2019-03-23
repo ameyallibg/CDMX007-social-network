@@ -10,10 +10,13 @@ window.controlador = {
     const modalInvalidEmail = document.getElementById("modal-invalid-email");
     const errorRegistro = document.getElementById("error-reg");
     const nombre = document.getElementById("name");
-    const botonCerrar = document.getElementById("button-comeback")
+    const botonCerrar = document.getElementById("button-comeback");
+    
+    
     var db = firebase.firestore();
     botonCerrar.addEventListener("click", () => {
       window.location.hash = '#/';
+      
 
     })
 
@@ -21,6 +24,16 @@ window.controlador = {
       let signInValue = signIn.value;
       let passwordValue = password.value;
       let name = nombre.value;
+      const addForm = document.forms.namedItem("add-form");
+      let select = document.getElementById("select")
+      const selectBoot = select.value
+      
+      
+      if (signInValue == "" ||  passwordValue == "" || name == "" || selectBoot == "Selecciona Bootcamp") {
+        alert("Porfavor completa todos los campos")
+      }else{
+      
+
 
       firebase.auth().createUserWithEmailAndPassword(signInValue, passwordValue)
         .then(function () {
@@ -30,13 +43,7 @@ window.controlador = {
             displayName: name,
 
             photoURL: "assets/img/alien.png"
-          }).then(function () {
-
-            // Update successful.
-          }).catch(function (error) {
-            console.log(error.message)
-            // An error happened.
-          });
+          })
           verification()
 
             .catch(function (error) {
@@ -47,10 +54,55 @@ window.controlador = {
             });
         }).catch(function (error) {
           var errorMessage = error.message;
-          errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
-              <p> ${errorMessage} </p></div>`;
+          console.log(errorMessage)
+          
+          if (errorMessage == "The email address is badly formatted.") {
+            errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
+              <p> El email no tiene el formato correcto</p></div>`;
+              setTimeout(function () {
+                errorRegistro.innerHTML="";
+              }, 3000);
+              
+            
+          }else if (errorMessage == "Password should be at least 6 characters") {
+            errorRegistro.innerHTML = ` <div class="alert alert-warning" role="alert">
+              <p> La contraseña deberia de tener al menos 6 caracteres</p></div>`;
+              setTimeout(function () {
+                errorRegistro.innerHTML="";
+              }, 3000);
+             
+          }
+          
 
         })
+        
+        
+  
+  
+          db.collection("bootcamp").add({
+              bootcamp:selectBoot,
+              email: addForm.elements.email.value,
+  
+            })
+            .then((docRef) => {
+              console.log("Document written with ID: ", docRef.id);
+            })
+            .catch((error) => {
+              console.error("Error adding document: ", error);
+            });
+          //const userIds = addForm.elements.userId.value;
+
+      } 
+      
+        
+  
+          
+  
+        
+      
+
+        
+  
     })
 
     const verification = () => {
@@ -68,26 +120,7 @@ window.controlador = {
       });
     }
 
-    if (window.location.href.includes("registro")) {
-      buttonSignIn.addEventListener('click', (event) => {
 
-        const addForm = document.forms.namedItem("add-form");
-
-        db.collection("posts").add({
-            name: addForm.elements.userId.value,
-            email: addForm.elements.email.value,
-
-          })
-          .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch((error) => {
-            console.error("Error adding document: ", error);
-          });
-        //const userIds = addForm.elements.userId.value;
-
-      });
-    }
 
 
 
@@ -115,9 +148,15 @@ window.controlador = {
           if (errorMessage == 'The email address is badly formatted.') {
             show.innerHTML = ` <div class=" alert-warning alert" role="alert">
                                 <p class="margin-warning">La direccion del correo no es valida</p></div>`;
+                                setTimeout(function () {
+                                  show.innerHTML="";
+                                }, 3000);
           } else {
             show.innerHTML = ` <div class=" alert-warning alert" role="alert">
                                 <p class="margin-warning">${errorCode}</p></div>`;
+                                setTimeout(function () {
+                                  show.innerHTML="";
+                                }, 3000);
 
           }
         });
@@ -185,8 +224,6 @@ window.controlador = {
       var user = user;
       var providerId = user.providerData[0].providerId;
 
-      
-
       if (user.emailVerified || providerId == "facebook.com" || providerId == "github.com") {
         window.location.hash = '#/wall';
         //poniendolo antes de las variables y dentro del settimeout
@@ -221,7 +258,20 @@ window.controlador = {
 
   posteos: () => {
 
+
+
     var db = firebase.firestore();
+    const emailUser = document.getElementById("emailUser");
+    const emailUserNew = emailUser.textContent
+
+    db.collection("bootcamp").where("email", "==", emailUserNew).get().then((querySnapshot) => {
+      const container = document.getElementById("contenido");
+      container.innerHTML = "";
+
+      querySnapshot.forEach((doc) => {
+        container.innerHTML += `${doc.data().bootcamp} </br>`;
+      });
+    });
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
@@ -247,8 +297,6 @@ window.controlador = {
           date: firebase.firestore.FieldValue.serverTimestamp(),
 
         })
-
-        db.collection('publucaciones')
       }
 
     })
@@ -316,7 +364,7 @@ window.controlador = {
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
               like: likeit,
-            }).then(function () {
+            }).then(function () { 
               console.log("Document successfully updated!");
             })
             .catch(function (error) {
