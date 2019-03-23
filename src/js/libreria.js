@@ -5,7 +5,7 @@
             rutas = {},
             controladores = {},
             ctrlActual = null,
-            libreria = {
+            library = {
                 getID: function (id) {
                     elemento = document.getElementById(id);
                     return this;
@@ -75,14 +75,14 @@
                 }
 
             };
-        return libreria;
+        return library;
     }
-    if (typeof window.libreria === 'undefined') {
-        window.libreria = window._ = inicio();
+    if (typeof window.library === 'undefined') {
+        window.library = window._ = inicio();
         window.addEventListener('load', _.manejadorRutas, false);
         window.addEventListener('hashchange', _.manejadorRutas, false)
 
     } else {
-        console.log("se llama nuevamente la libreria ");
+        console.log("se llama nuevamente la library ");
     }
 })(window, document);
