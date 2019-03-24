@@ -28,9 +28,11 @@ window.controlador = {
       let select = document.getElementById("select")
       const selectBoot = select.value
       
+
+      
       
       if (signInValue == "" ||  passwordValue == "" || name == "" || selectBoot == "Selecciona Bootcamp") {
-        alert("Porfavor completa todos los campos")
+        $("#modal-reg").modal() 
       }else{
       
 
@@ -125,7 +127,6 @@ window.controlador = {
 
 
   },
-
   iniciosesion: () => {
     // termina registro de personas
     const buttonSignInRegister = document.getElementById("button-sign-in-reg");
@@ -252,10 +253,6 @@ window.controlador = {
       }
     }
   },
-
-
-
-
   posteos: () => {
 
 
@@ -285,7 +282,8 @@ window.controlador = {
       var comentario = document.getElementById('comentario').value;
 
       if (comentario == "") {
-        alert("Debes agregar un COMENTARIO!!")
+        $("#modal-empty").modal() 
+        
 
 
       } else {
@@ -331,7 +329,7 @@ window.controlador = {
           
           <textarea class="textarea"id= "txt-${doc.id}" name="textarea" rows="10" cols="50" disabled="true">${doc.data().mensaje}</textarea>
           <button id= "${doc.id}"  class="tablasEliminar avatar-eliminar" ><u>Eliminar</u></button> 
-          <p id = "guardar-${doc.id}"></p>
+          <p  class= "safe-p" id = "guardar-${doc.id}"></p>
         </div>
         `
         } else {
@@ -386,27 +384,29 @@ window.controlador = {
 
         tablasEliminar[i].addEventListener('click', () => {
 
-          if (confirm("¿Estas seguro de ELIMINAR este mensaje?") == true) {
-
+          $("#modal-remove").modal()
+          buttonSuccess = document.getElementById("button-success");
+          buttonSuccess.addEventListener("click", () =>{
             let id = tablasEliminar[i].id
-
             db.collection("publicaciones").doc(id).delete().then(function () {
 
               console.log("Document successfully deleted!");
             }).catch(function (error) {
               console.error("Error removing document: ", error);
             });
-          }
-
-        })
-      }
-
+          })
+            
+          })
+        }
+                
       const tablasEditar = document.getElementsByClassName('tablasEditar')
       
       for (let i = 0; i < tablasEditar.length; i++) {
 
         tablasEditar[i].addEventListener('click', () => {
-          if (confirm("¿Estas seguro de editar este mensaje?") == true) {
+          $("#modalEdit").modal()
+          buttonEdit = document.getElementById("button-edit");
+          buttonEdit.addEventListener("click", () =>{
             let id = tablasEditar[i].id;
 
             document.getElementById("txt-" + id).disabled = false;
@@ -419,7 +419,8 @@ window.controlador = {
               const msjEditado = document.getElementById("txt-" + id).value;
               
               if (msjEditado == "") {
-                alert("Debes agregar un COMENTARIO!!");
+                $("#inputClear").modal()
+                // alert("Debes agregar un COMENTARIO!!");
         
               }else{
               var publiEditada = db.collection("publicaciones").doc(id);
@@ -439,9 +440,11 @@ window.controlador = {
                 });
               }
             })
-          }
+          })
         })
       }
     });
   }
+
+
 }
