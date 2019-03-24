@@ -445,3 +445,14 @@ button:hover {
 .safe-p{
    width: 100%;
 }
+
+@media screen and (min-width: 600px)  {
+.container-pub {
+      display: inline-block;
+      width: 45%;
+      margin-left:3%
+}
+.number-likes{
+   margin-left: 91%;
+}
+}
