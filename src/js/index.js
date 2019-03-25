@@ -361,14 +361,14 @@ window.controlador = {
           let id = tablas[i].id;
           let likeit = parseInt(e.target.dataset.like)
           likeit++;
-          console.log(likeit)
+          // console.log(likeit)
 
 
           var sumar = db.collection("publicaciones").doc(id);
           return sumar.update({
               like: likeit,
             }).then(function () { 
-              console.log("Document successfully updated!");
+              // console.log("Document successfully updated!");
             })
             .catch(function (error) {
               console.error("Error updating document: ", error);
@@ -390,7 +390,7 @@ window.controlador = {
             let id = tablasEliminar[i].id
             db.collection("publicaciones").doc(id).delete().then(function () {
 
-              console.log("Document successfully deleted!");
+              // console.log("Document successfully deleted!");
             }).catch(function (error) {
               console.error("Error removing document: ", error);
             });
