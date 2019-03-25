@@ -269,6 +269,7 @@ window.controlador = {
         container.innerHTML += `${doc.data().bootcamp} </br>`;
       });
     });
+    
     //Agregar comentarios
     var posteo = document.getElementById("publicar");
     posteo.addEventListener("click", () => {
@@ -280,6 +281,9 @@ window.controlador = {
       const emailUser = user.email;
       var inputComment = document.getElementById('comentario');
       var comentario = document.getElementById('comentario').value;
+    
+      
+    
 
       if (comentario == "") {
         $("#modal-empty").modal() 
@@ -303,6 +307,8 @@ window.controlador = {
       }
 
     })
+    
+    
 
 
     //leer info

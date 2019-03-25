@@ -202,6 +202,9 @@ _visual design_ como contraste, alineación, jerarquía, entre otros.
 
 Geek It se creó con el objetivo de ser una red social temática, conectar a las personas con intereses específicos en común, en este caso los Coding Bootcamps CDMX y así sumarse a los canales de comunicación que existen para finalmente compartir conociento, tips, recomendaciones y experiencias dentro del mundo del desarrollo web.
 
+Actualmente tenemos registro de 71 visitas a Geek It.
+![geekit](http://img.fenixzone.net/i/T9RObGn.png)
+
 ### Créditos
 - [Ameyalli Brito](https://github.com/ameyallibg)
 - [Erandi Cuervo](https://github.com/ErandiCVC13)
