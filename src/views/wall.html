@@ -18,6 +18,8 @@
                         <button id="signOut" style="color:white; border:none; background-color: #2e2e2e;     margin-top: 1em;">Cerrar
                             sesión</button>
                     </div>
+                          <!-- Modal -->
+
                     
                 </li>
             </ul>
@@ -28,11 +30,85 @@
 <h1 class="titleWall">Geek it !</h1>
 
 <div class="container">
+        <div class="modal fade" id="modal-empty" role="dialog">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content modal-top">
+                    <div class="modal-header color-header">
+                        <h4 class="modal-title color-green">Opps!</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      
+                    </div>
+                    <div class="modal-body">
+                      <p class="color-modal "> Tú publicacion esta vacia</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="containerModal">
+                    <div class="modal fade" id="modal-remove" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content modal-top">
+                                <div class="modal-header">
+                                  <h5 class="modal-title color-green" id="exampleModalLabel">Confirmación</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p class="color-black">¿Estas seguro de querer eliminar esta publicacion para <span class="color-green"><b>¡SIEMPRE! </b></span>\o/ ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                  <button id="button-success" type="button" class="btn btn-success" data-dismiss="modal">Eliminar</button>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content modal-top">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title color-green" id="exampleModalLabel">Confirmación</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p class="color-black">¿Quieres editar esta publicacion?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      
+                                      <button id="button-edit" type="button" class="btn btn-success" data-dismiss="modal">Editar</button>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal fade" id="inputClear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content modal-top">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title color-green" id="exampleModalLabel">Noooo!</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p class="color-modal">No puedes publicar un mensaje vacio  -_-</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+            </div>
 
     <div class="text-area-publicar">
         <textarea class="text-area" id="comentario" placeholder="¿Qué estás pensando?"></textarea>
 
-        <button class="button-publicar style-publicar" id="publicar" >Publicar</button>
+        <button class="button-publicar style-publicar" id="publicar">Publicar</button>
+
     </div>
     <br>
 
