@@ -351,8 +351,6 @@ window.controlador = {
         }
 
       });
-
-
       const tablas = document.getElementsByClassName("tablas");
       for (let i = 0; i < tablas.length; i++) {
         // let liker = parseInt(tablas[i].value)
